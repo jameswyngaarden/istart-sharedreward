@@ -1,5 +1,5 @@
-# SRNDNA: Shared Reward Task Data and Analyses
-This repository contains code related to our in prep project related to shared reward and aging. All hypotheses and analysis plans were pre-registered on AsPredicted on 7/26/2018 and data collection commenced on 7/31/2018. Imaging data will be shared via [OpenNeuro][openneuro] when the manuscript is posted on bioRxiv.
+# ISTART: Shared Reward Task Data and Analyses
+This repository contains code related to our in prep project related to shared reward and aging. All hypotheses and analysis plans were pre-registered on AsPredicted in fall semester 2019 and data collection commenced on shortly thereafter. Imaging data will be shared via [OpenNeuro][openneuro] when the manuscript is posted on bioRxiv.
 
 
 ## A few prerequisites and recommendations
@@ -16,15 +16,14 @@ This repository contains code related to our in prep project related to shared r
   - `templates`: fsf template files used for FSL analyses
   - `masks`: images used as masks, networks, and seed regions in analyses
   - `stimuli`: psychopy scripts and matlab scripts for delivering stimuli and organizing output
-  - `bids`: bids data (only text files since images need to be obtained from [OpenNeuro][openneuro], as described below)
   - `derivatives`: derivatives from analysis scripts, but only text files (re-run script to regenerate larger outputs)
 
 
 ## Basic commands to reproduce our analyses
 ```
 # get code and data (two options for data)
-git clone https://github.com/DVS-Lab/srndna-sharedreward
-cd srndna-sharedreward
+git clone https://github.com/DVS-Lab/ istart-sharedreward
+cd  istart-sharedreward
 
 rm -rf bids # remove bids subdirectory since it will be replaced below
 # can this be made into a sym link?
@@ -47,6 +46,6 @@ bash code/run_L3stats.sh
 
 
 ## Acknowledgments
-This work was supported, in part, by grants from the National Institutes of Health (R21-MH113917 and R03-DA046733 to DVS and R15-MH122927 to DSF) and a Pilot Grant from the Scientific Research Network on Decision Neuroscience and Aging [to DVS; Subaward of NIH R24-AG054355 (PI Gregory Samanez-Larkin)]. We thank Victoria Kelly, Nicole Henninger, Dennis Desalme, Ben Muzekari, Isaac Levy, Gemma Goldstein, and Srikar Katta for assistance with participant recruitment and data collection, and Jeffrey Dennison for assistance with data processing. DVS was a Research Fellow of the Public Policy Lab at Temple University during the preparation of the manuscript (2019-2020 academic year).
+This work was supported, in part, by grants from the National Institutes of Health (R03-DA046733 to DVS and R15-MH122927 to DSF). DVS was a Research Fellow of the Public Policy Lab at Temple University during the preparation of the manuscript (2019-2020 academic year).
 
 [openneuro]: https://openneuro.org/
