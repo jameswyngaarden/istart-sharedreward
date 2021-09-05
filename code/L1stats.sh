@@ -29,7 +29,7 @@ DATA=${istartdatadir}/derivatives/fmriprep/sub-${sub}/func/sub-${sub}_task-${TAS
 NVOLUMES=`fslnvols $DATA`
 CONFOUNDEVS=${istartdatadir}/derivatives/fsl/confounds/sub-${sub}/sub-${sub}_task-${TASK}_run-${run}_desc-fslConfounds.tsv
 if [ ! -e $CONFOUNDEVS ]; then
-	echo "missing: $CONFOUNDEVS " >> ${maindir}/re-runL1.log
+	echo "missing confounds: $CONFOUNDEVS " >> ${maindir}/re-runL1.log
 	exit # exiting to ensure nothing gets run without confounds
 fi
 EVDIR=${istartdatadir}/derivatives/fsl/EVfiles/sub-${sub}/${TASK}/run-0${run} #change to maindir TO FIX: no zero pad
@@ -68,7 +68,7 @@ if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 	if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
 		exit
 	else
-		echo "missing: $OUTPUT " >> ${maindir}/re-runL1.log
+		echo "missing feat output: $OUTPUT " >> ${maindir}/re-runL1.log
 		rm -rf ${OUTPUT}.feat
 	fi
 
