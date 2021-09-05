@@ -5,8 +5,8 @@ scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 maindir="$(dirname "$scriptdir")"
 
 # the "type" variable below is setting a path inside the main script
-for type in ppi_seed-VS; do # act nppi-ecn nppi-dmn
-	for sub in 104 105 106 107 108 109 110 111 112 113 115 116 117 118 120 121 122 124 125 126 127 128 129 130 131 132 133 134 135 136 137 140 141 142 143 144 145 147 149 150 151 152 153 154 155 156 157 158 159; do
+for type in act; do # act nppi-ecn nppi-dmn
+	for sub in 1001 1002 1003 1004 1006 1007 1009 1010 1011 1012 1013 1015 1016 1019 1021 1240 1242 1243 1244 1245 1247 1248 1249 1251 1253 1286 1300; do
 
 			# Manages the number of jobs and cores
 	  	SCRIPTNAME=${maindir}/code/L2stats.sh
