@@ -32,7 +32,7 @@ if [ ! -e $CONFOUNDEVS ]; then
 	echo "missing: $CONFOUNDEVS " >> ${maindir}/re-runL1.log
 	exit # exiting to ensure nothing gets run without confounds
 fi
-EVDIR=${istartdatadir}/derivatives/fsl/EVfiles/sub-${sub}/${TASK}/run-0${run} #change to maindir
+EVDIR=${istartdatadir}/derivatives/fsl/EVfiles/sub-${sub}/${TASK}/run-0${run} #change to maindir TO FIX: no zero pad
 
 # empty EVs (specific to this study)
 EV_MISSED_TRIAL=${EVDIR}_missed_trial.txt
@@ -64,7 +64,7 @@ fi
 if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 
 	# check for output and skip existing
-	OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-02_type-nppi-${ppi}_run-0${run}_sm-${sm}
+	OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-nppi-${ppi}_run-${run}_sm-${sm}
 	if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
 		exit
 	else
@@ -73,14 +73,14 @@ if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 	fi
 
 	# network extraction. need to ensure you have run Level 1 activation
-	MASK=${MAINOUTPUT}/L1_task-${TASK}_model-02_type-act_run-0${run}_sm-${sm}.feat/mask
+	MASK=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-act_run-${run}_sm-${sm}.feat/mask
 	if [ ! -e ${MASK}.nii.gz ]; then
 		echo "cannot run nPPI because you're missing $MASK"
 		exit
 	fi
 	for net in `seq 0 9`; do
 		NET=${maindir}/masks/nan_rPNAS_2mm_net000${net}.nii.gz
-		TSFILE=${MAINOUTPUT}/ts_task-${TASK}_net000${net}_nppi-${ppi}_run-0${run}.txt
+		TSFILE=${MAINOUTPUT}/ts_task-${TASK}_net000${net}_nppi-${ppi}_run-${run}.txt
 		fsl_glm -i $DATA -d $NET -o $TSFILE --demean -m $MASK
 		eval INPUT${net}=$TSFILE
 	done
@@ -97,8 +97,8 @@ if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 	fi
 
 	# create template and run analyses
-	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-02_type-nppi.fsf
-	OTEMPLATE=${MAINOUTPUT}/L1_task-${TASK}_model-02_seed-${ppi}_run-0${run}.fsf
+	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-2_type-nppi.fsf
+	OTEMPLATE=${MAINOUTPUT}/L1_task-${TASK}_model-2_seed-${ppi}_run-${run}.fsf
 	sed -e 's@OUTPUT@'$OUTPUT'@g' \
 	-e 's@DATA@'$DATA'@g' \
 	-e 's@EVDIR@'$EVDIR'@g' \
@@ -130,10 +130,10 @@ else # otherwise, do activation and seed-based ppi
 	# set output based in whether it is activation or ppi
 	if [ "$ppi" == "0" ]; then
 		TYPE=act
-		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-02_type-${TYPE}_run-0${run}_sm-${sm}
+		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-${TYPE}_run-${run}_sm-${sm}
 	else
 		TYPE=ppi
-		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-02_type-${TYPE}_seed-${ppi}_run-0${run}_sm-${sm}
+		OUTPUT=${MAINOUTPUT}/L1_task-${TASK}_model-2_type-${TYPE}_seed-${ppi}_run-${run}_sm-${sm}
 	fi
 
 	# check for output and skip existing
@@ -145,8 +145,8 @@ else # otherwise, do activation and seed-based ppi
 	fi
 
 	# create template and run analyses
-	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-02_type-${TYPE}.fsf
-	OTEMPLATE=${MAINOUTPUT}/L1_sub-${sub}_task-${TASK}_model-02_seed-${ppi}_run-0${run}.fsf
+	ITEMPLATE=${maindir}/templates/L1_task-${TASK}_model-2_type-${TYPE}.fsf
+	OTEMPLATE=${MAINOUTPUT}/L1_sub-${sub}_task-${TASK}_model-2_seed-${ppi}_run-${run}.fsf
 	if [ "$ppi" == "0" ]; then
 		sed -e 's@OUTPUT@'$OUTPUT'@g' \
 		-e 's@DATA@'$DATA'@g' \
@@ -164,7 +164,7 @@ else # otherwise, do activation and seed-based ppi
 		-e 's@NVOLUMES@'$NVOLUMES'@g' \
 		<$ITEMPLATE> $OTEMPLATE
 	else
-		PHYS=${MAINOUTPUT}/ts_task-${TASK}_mask-${ppi}_run-0${run}.txt
+		PHYS=${MAINOUTPUT}/ts_task-${TASK}_mask-${ppi}_run-${run}.txt
 		MASK=${maindir}/masks/seed-${ppi}.nii.gz
 		fslmeants -i $DATA -o $PHYS -m $MASK
 		sed -e 's@OUTPUT@'$OUTPUT'@g' \
