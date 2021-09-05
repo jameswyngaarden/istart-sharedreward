@@ -4,6 +4,7 @@
 scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 basedir="$(dirname "$scriptdir")"
 nruns=2
+task=sharedreward # edit if necessary
 
 for ppi in 0; do # putting 0 first will indicate "activation"
 	for sub in 1001 1002 1003 1004 1006 1007 1009 1010 1011 1012 1013 1015 1016 1019 1021 1240 1242 1243 1244 1245 1247 1248 1249 1251 1253 1286 1300; do
@@ -18,7 +19,7 @@ for ppi in 0; do # putting 0 first will indicate "activation"
 				echo "skipping run-2 for sub-${sub} for task-${task}"
 				continue
 			fi
-			
+
 	  	# Manages the number of jobs and cores
 	  	SCRIPTNAME=${basedir}/code/L1stats.sh
 	  	NCORES=15
