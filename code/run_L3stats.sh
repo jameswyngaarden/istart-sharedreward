@@ -8,7 +8,6 @@
 scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 maindir="$(dirname "$scriptdir")"
 
-RUNLEVEL=0 # 1 or 0 for boolean
 
 # this loop defines the different types of analyses that will go into the group comparisons
 for analysis in act ppi_seed-NAcc; do # act nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
@@ -46,7 +45,7 @@ for analysis in act ppi_seed-NAcc; do # act nppi-dmn nppi-ecn ppi_seed | type-${
 		while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
 			sleep 1s
 		done
-		bash $SCRIPTNAME $copenum $copename $analysistype $RUNLEVEL &
+		bash $SCRIPTNAME $copenum $copename $analysistype &
 
 	done
 done
