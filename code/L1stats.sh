@@ -140,7 +140,7 @@ else # otherwise, do activation and seed-based ppi
 	if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
 		exit
 	else
-		echo "missing: $OUTPUT " >> ${maindir}/re-runL1.log
+		echo "missing feat output: $OUTPUT " >> ${maindir}/re-runL1.log
 		rm -rf ${OUTPUT}.feat
 	fi
 
