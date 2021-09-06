@@ -1,4 +1,4 @@
-# Analysis Code
+# ISTART-sharedreward: Analysis Code
 
 ## Overview and disclaimers
 - run_* scripts loop through a list of subjects for a given script; e.g., run_L1stats.sh loops all subjects through the L1stats.sh script.

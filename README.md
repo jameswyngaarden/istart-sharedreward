@@ -1,4 +1,4 @@
-# ISTART: Shared Reward Task Data and Analyses
+# ISTART-sharedreward: Shared Reward Task Data and Analyses
 This repository contains code related to our in prep project related to shared reward and aging. All hypotheses and analysis plans were pre-registered on AsPredicted in fall semester 2019 and data collection commenced on shortly thereafter. Imaging data will be shared via [OpenNeuro][openneuro] when the manuscript is posted on bioRxiv.
 
 
