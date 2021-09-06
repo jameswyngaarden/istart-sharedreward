@@ -8,16 +8,16 @@
 scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 maindir="$(dirname "$scriptdir")"
 
-RUNLEVEL=1 # 1 or 0 for boolean
+RUNLEVEL=0 # 1 or 0 for boolean
 
 # this loop defines the different types of analyses that will go into the group comparisons
-for analysis in act_run-01 act_run-02; do # act nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
+for analysis in act ppi_seed-NAcc; do # act nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
 	analysistype=type-${analysis}
 
 	# these define the cope number (copenum) and cope name (copename)
-	for copeinfo in "1 C_pun" "2 C_rew" "3 F_pun" "4 F_rew" "5 S_pun" "6 S_rew"; do
+	# for copeinfo in "1 C_pun" "2 C_rew" "3 F_pun" "4 F_rew" "5 S_pun" "6 S_rew"; do
 	# "1 C_pun" "2 C_rew" "3 F_pun" "4 F_rew" "5 S_pun" "6 S_rew" "7 rew-pun" "8 F-S" "9 F-C" "10 FS-C" "11 rew-pun_F-S" "12 rew-pun_S-C" "13 rew-pun_F-C" "14 rew_F-S" "15 rew_S-C" "16 rew_F-C" "17 pun_F-S" "18 pun_S-C" "19 pun_F-C" "20 F-SC_all" "21 F-SC_rew" "22 F-SC_pun" "23 phys"; do
-	#for copeinfo in "1 C_pun" "2 C_rew" "3 F_pun" "4 F_rew" "5 S_pun" "6 S_rew" "7 rew-pun" "8 F-S" "9 F-C" "10 FS-C" "11 rew-pun_F-S" "12 rew-pun_S-C" "13 rew-pun_F-C" "14 rew_F-S" "15 rew_S-C" "16 rew_F-C" "17 pun_F-S" "18 pun_S-C" "19 pun_F-C" "20 F-SC_all" "21 F-SC_rew" "22 F-SC_pun" "23 phys" "24 F-SC_rew-pun"; do
+	for copeinfo in "1 C_pun" "2 C_rew" "3 F_pun" "4 F_rew" "5 S_pun" "6 S_rew" "7 rew-pun" "8 F-S" "9 F-C" "10 FS-C" "11 rew-pun_F-S" "12 rew-pun_S-C" "13 rew-pun_F-C" "14 rew_F-S" "15 rew_S-C" "16 rew_F-C" "17 pun_F-S" "18 pun_S-C" "19 pun_F-C" "20 F-SC_all" "21 F-SC_rew" "22 F-SC_pun" "23 phys" "24 F-SC_rew-pun"; do
 
 		# split copeinfo variable
 		set -- $copeinfo
@@ -33,10 +33,10 @@ for analysis in act_run-01 act_run-02; do # act nppi-dmn nppi-ecn ppi_seed | typ
 		if [ "${analysistype}" == "type-act" ] && [ "${copeinfo}" == "24 F-SC_rew-pun" ]; then
 			copenum=23
 			copename=F-SC_rew-pun
-		elif [ "${analysistype}" == "type-ppi_seed-VS" ] && [ "${copeinfo}" == "24 F-SC_rew-pun" ]; then
+		elif [ "${analysistype}" == "type-ppi_seed-NAcc" ] && [ "${copeinfo}" == "24 F-SC_rew-pun" ]; then
 			copenum=23
 			copename=F-SC_rew-pun
-		elif [ "${analysistype}" == "type-ppi_seed-VS" ] && [ "${copeinfo}" == "23 phys" ]; then
+		elif [ "${analysistype}" == "type-ppi_seed-NAcc" ] && [ "${copeinfo}" == "23 phys" ]; then
 			copenum=24
 			copename=phys
 		fi
