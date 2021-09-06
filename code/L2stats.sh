@@ -18,6 +18,12 @@ if [ $sub -eq 1240 ] || [ $sub -eq 1245 ] || [ $sub -eq 1247 ] || [ $sub -eq 100
 	echo "skipping sub-${sub} for task-${task}"
 	exit
 fi
+
+# hopefully temporary:
+if [ $sub -eq 1002 ] || [ $sub -eq 1010 ] || [ $sub -eq 1253 ] || [ $sub -eq 1286 ] || [ $sub -eq 1300 ]; then # bad data
+	echo "skipping sub-${sub} for task-${task}"
+	exit
+fi
 NCOPES=23
 
 # ppi has more contrasts than act (phys), so need a different L2 template
