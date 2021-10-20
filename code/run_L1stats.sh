@@ -7,7 +7,8 @@ nruns=2
 task=sharedreward # edit if necessary
 
 for ppi in 0 NAcc; do # putting 0 first will indicate "activation"
-	for sub in 1001 1002 1003 1004 1006 1007 1009 1010 1011 1012 1013 1015 1016 1019 1021 1240 1242 1243 1244 1245 1247 1248 1249 1251 1253 1286 1300; do
+	#for sub in 1001 1002 1003 1004 1006 1007 1009 1010 1011 1012 1013 1015 1016 1019 1021 1240 1242 1243 1244 1245 1247 1248 1249 1251 1253 1286 1300; do
+	for sub in 1301 3116 3122 3140 3143 3166 3173 3176; do
 	  for run in `seq $nruns`; do
 
 			# some exceptions, hopefully temporary
