@@ -3,29 +3,14 @@
 ## Overview and disclaimers
 - run_* scripts loop through a list of subjects for a given script; e.g., run_L1stats.sh loops all subjects through the L1stats.sh script.
 - paths to input/output data should work without error, but check package/software installation
+- see also https://github.com/DVS-Lab/istart-data for scripts that generated data that this reposistory uses
 
-## scripts:
-L1stats.sh
-L2stats.sh
-L3stats.sh
-README.md
-barweb_dvs2.m
-compileZimages.sh
-extractROI.sh
-gen3colfiles.sh
-plotROIdata.m
-run_L1stats.sh
-run_L2stats.sh
-run_L3stats.sh
-run_gen3colfiles.sh
-
-## Imaging analyses  
-1. Convert `*_events.tsv` files to 3-column files (compatible with FSL) using Tom Nichols' [BIDSto3col.sh](https://github.com/INCF/bidsutils) script. This script is wrapped into our pipeline using `bash gen_3col_files.sh $sub $nruns`
-1. Run analyses in FSL. Analyses in FSL consist of three stages, which we call "Level 1" (L1) and "Level 2" (L2).
-  - `L1stats.sh` -- initial time series analyses, relating brain responses to the task conditions in each run
-  - `L2stats.sh` -- combines data across runs
-  - `L3stats.sh` -- combines data across subjects
-
-
-
-[fmriprep]: http://fmriprep.readthedocs.io/en/latest/index.html
+## Scripts
+- `L1stats.sh` -- Level 1 analysis on a specific subject and run (could be activation, PPI, or network PPI)
+- `L2stats.sh` -- Level 2 analysis (combine data across runs)
+- `L3stats.sh` -- Level 3 analysis (i.e., group-level analysis)
+- `barweb_dvs2.m` -- helper function for making bargraphs (used by plotROIdata.m)
+- `compileZimages.sh` -- compiles subject-level z-stat images (useful for plotting)
+- `extractROI.sh` -- extract stat values (e.g., zstat, cope, etc.) from an ROI in a 4-d image
+- `gen3colfiles.sh` -- generate 3-column files for FSL based on BIDS `*_events.tsv` files
+- `plotROIdata.m` -- plot data from an ROI as a bar graph (uses output of `extractROI.sh`)

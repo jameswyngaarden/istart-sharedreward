@@ -23,7 +23,7 @@ As we're collecting data, we must analyze it on an ongoing basis for the sake of
 ### Step 1: Checking your inputs
 Before you do anything, you should make sure all your inputs are there. The person managing the preprocessing should have taken care of these steps under the `DVS-Lab/istart-data` repository:
 1. Conversion to BIDS, defacing, and MRIQC (prepdata.sh)
-1. Preprocessing (fmriprep.sh)
+1. Preprocessing with [fmriprep][fmriprep] (fmriprep.sh)
 1. Creation of confound EVs (MakeConfounds.py)
 
 ### Step 2: Updating BIDS sub-<sub>_task-<task>_run-<run>_events.tsv files
@@ -97,3 +97,4 @@ bash code/run_L3stats.sh
 This work was supported, in part, by grants from the National Institutes of Health (R03-DA046733 to DVS and R15-MH122927 to DSF). DVS was a Research Fellow of the Public Policy Lab at Temple University during the preparation of the manuscript (2019-2020 academic year).
 
 [openneuro]: https://openneuro.org/
+[fmriprep]: http://fmriprep.readthedocs.io/en/latest/index.html
