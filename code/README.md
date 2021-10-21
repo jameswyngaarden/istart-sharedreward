@@ -5,12 +5,13 @@
 - paths to input/output data should work without error, but check package/software installation
 - see also https://github.com/DVS-Lab/istart-data for scripts that generated data that this reposistory uses
 
-## Scripts
+## Scripts and files
 - `L1stats.sh` -- Level 1 analysis on a specific subject and run (could be activation, PPI, or network PPI)
 - `L2stats.sh` -- Level 2 analysis (combine data across runs)
 - `L3stats.sh` -- Level 3 analysis (i.e., group-level analysis)
-- `barweb_dvs2.m` -- helper function for making bargraphs (used by plotROIdata.m)
+- `barweb_dvs2.m` -- helper function for making bargraphs (used by `plotROIdata.m`)
 - `compileZimages.sh` -- compiles subject-level z-stat images (useful for plotting)
 - `extractROI.sh` -- extract stat values (e.g., zstat, cope, etc.) from an ROI in a 4-d image
 - `gen3colfiles.sh` -- generate 3-column files for FSL based on BIDS `*_events.tsv` files
 - `plotROIdata.m` -- plot data from an ROI as a bar graph (uses output of `extractROI.sh`)
+- `newsubs.txt` -- list of subjects for an analysis
