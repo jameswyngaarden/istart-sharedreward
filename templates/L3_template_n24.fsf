@@ -24,13 +24,13 @@ set fmri(relative_yn) 0
 set fmri(help_yn) 1
 
 # Run Featwatcher
-set fmri(featwatcher_yn) 1
+set fmri(featwatcher_yn) 0
 
 # Cleanup first-level standard-space images
 set fmri(sscleanup_yn) 1
 
 # Output directory
-set fmri(outputdir) "/data/projects/istart-sharedreward/derivatives/fsl/__tmpL3_n24"
+set fmri(outputdir) "OUTPUT"
 
 # TR(s)
 set fmri(tr) 3
@@ -269,76 +269,76 @@ set fmri(paradigm_hp) 100
 set fmri(ncopeinputs) 0
 
 # 4D AVW data or FEAT directory (1)
-set feat_files(1) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1001/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(1) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1001/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (2)
-set feat_files(2) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1006/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(2) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1006/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (3)
-set feat_files(3) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1007/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(3) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1007/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (4)
-set feat_files(4) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1009/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(4) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1009/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (5)
-set feat_files(5) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1011/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(5) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1011/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (6)
-set feat_files(6) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1012/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(6) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1012/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (7)
-set feat_files(7) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1013/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(7) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1013/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (8)
-set feat_files(8) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1015/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(8) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1015/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (9)
-set feat_files(9) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1016/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(9) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1016/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (10)
-set feat_files(10) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1019/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(10) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1019/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (11)
-set feat_files(11) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1021/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(11) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1021/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (12)
-set feat_files(12) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1242/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(12) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1242/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (13)
-set feat_files(13) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1243/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(13) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1243/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (14)
-set feat_files(14) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1244/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(14) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1244/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (15)
-set feat_files(15) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1249/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(15) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1249/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (16)
-set feat_files(16) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1251/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(16) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1251/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (17)
-set feat_files(17) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1300/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(17) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1300/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (18)
-set feat_files(18) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3116/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(18) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3116/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (19)
-set feat_files(19) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3122/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(19) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3122/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (20)
-set feat_files(20) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3140/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(20) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3140/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (21)
-set feat_files(21) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3143/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(21) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3143/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (22)
-set feat_files(22) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3166/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(22) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3166/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (23)
-set feat_files(23) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3173/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(23) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3173/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (24)
-set feat_files(24) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3176/L2_task-sharedreward_model-2_type-act_sm-6.gfeat/cope1.feat/stats/cope1.nii.gz"
+set feat_files(24) "/data/projects/istart-sharedreward/derivatives/fsl/sub-3176/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # Add confound EVs text file
 set fmri(confoundevs) 0
