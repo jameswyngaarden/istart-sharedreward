@@ -8,7 +8,7 @@ task=sharedreward # edit if necessary
 
 for ppi in 0 NAcc; do # putting 0 first will indicate "activation"
 
-	for sub in `cat newsubs.txt`; do
+	for sub in `cat ${scriptdir}/newsubs.txt`; do
 	  for run in `seq $nruns`; do
 
 			# some exceptions, hopefully temporary
