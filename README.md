@@ -26,7 +26,7 @@ Before you do anything, you should make sure all your inputs are there. The pers
 1. Preprocessing with [fmriprep][fmriprep] (fmriprep.sh)
 1. Creation of confound EVs (MakeConfounds.py)
 
-### Step 2: Updating BIDS sub-<sub>_task-<task>_run-<run>_events.tsv files
+### Step 2: Updating BIDS sub-<sub>_task-<task>_run-<run>\_events.tsv files
 Since HeuDiConv can only put in a placeholder for your `sub-<sub>_task-<task>_run-<run>_events.tsv` files, you must convert your behavioral data into BIDS format. Those converted data should live with the other BIDS data. For the project in this repository, here are the steps you'd take:
 1. make sure local source data is current:
   - `cd /data/projects/istart`
