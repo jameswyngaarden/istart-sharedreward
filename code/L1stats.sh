@@ -20,7 +20,7 @@ sm=6
 sub=$1
 run=$2
 ppi=$3 # 0 for activation, otherwise seed region or network
-
+logfile=$4
 
 # set inputs and general outputs (should not need to chage across studies in Smith Lab)
 MAINOUTPUT=${maindir}/derivatives/fsl/sub-${sub}
@@ -29,7 +29,7 @@ DATA=${istartdatadir}/derivatives/fmriprep/sub-${sub}/func/sub-${sub}_task-${TAS
 NVOLUMES=`fslnvols $DATA`
 CONFOUNDEVS=${istartdatadir}/derivatives/fsl/confounds/sub-${sub}/sub-${sub}_task-${TASK}_run-${run}_desc-fslConfounds.tsv
 if [ ! -e $CONFOUNDEVS ]; then
-	echo "missing confounds: $CONFOUNDEVS " >> ${maindir}/re-runL1.log
+	echo "missing confounds: $CONFOUNDEVS " >> $logfile
 	exit # exiting to ensure nothing gets run without confounds
 fi
 EVDIR=${maindir}/derivatives/fsl/EVfiles/sub-${sub}/${TASK}/run-${run}
@@ -68,7 +68,7 @@ if [ "$ppi" == "ecn" -o  "$ppi" == "dmn" ]; then
 	if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
 		exit
 	else
-		echo "missing feat output: $OUTPUT " >> ${maindir}/re-runL1.log
+		echo "running: $OUTPUT " >> $logfile
 		rm -rf ${OUTPUT}.feat
 	fi
 
@@ -140,7 +140,7 @@ else # otherwise, do activation and seed-based ppi
 	if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
 		exit
 	else
-		echo "missing feat output: $OUTPUT " >> ${maindir}/re-runL1.log
+		echo "running: $OUTPUT " >> $logfile
 		rm -rf ${OUTPUT}.feat
 	fi
 

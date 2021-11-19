@@ -24,6 +24,8 @@ copenum=$1
 copenum_thresh_randomise=7 # actual contrasts start here. no need to do randomise main effects (e.g., reward > nothing/fixation/baseline)
 copename=$2
 REPLACEME=$3 # this defines the parts of the path that differ across analyses
+logfile=$4
+
 MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-2_task-${task}_n${N}_flame1
 mkdir -p $MAINOUTPUT
 
@@ -117,7 +119,7 @@ if [ -e ${OUTPUT}.gfeat/cope1.feat/cluster_mask_zstat1.nii.gz ]; then
 
 else # try to run feat and clean up previous effort with partial output
 
-	echo "re-doing: ${OUTPUT}" >> re-runL3.log
+	echo "running: ${OUTPUT}" >> $logfile
 	rm -rf ${OUTPUT}.gfeat
 
 	# create template and run FEAT analyses

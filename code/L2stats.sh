@@ -9,6 +9,8 @@ sub=$1
 type=$2
 task=sharedreward # edit if necessary
 sm=6 # edit if necessary
+logfile=$3
+
 MAINOUTPUT=${maindir}/derivatives/fsl/sub-${sub}
 
 
@@ -45,7 +47,7 @@ OUTPUT=${MAINOUTPUT}/L2_task-${task}_model-2_type-${type}_sm-${sm}
 if [ -e ${OUTPUT}.gfeat/cope${NCOPES}.feat/cluster_mask_zstat1.nii.gz ]; then # check last (act) or penultimate (ppi) cope
 	echo "skipping existing output"
 else
-	echo "re-doing: ${OUTPUT}" >> re-runL2.log
+	echo "running: ${OUTPUT}" >> $logfile
 	rm -rf ${OUTPUT}.gfeat
 
 	# set output template and run template-specific analyses
