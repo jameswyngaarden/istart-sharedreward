@@ -16,13 +16,13 @@ MAINOUTPUT=${maindir}/derivatives/fsl/sub-${sub}
 
 # --- start EDIT HERE start: exceptions and conditionals for the task
 
-if [ $sub -eq 1240 ] || [ $sub -eq 1245 ] || [ $sub -eq 1247 ] || [ $sub -eq 1002 ] || [ $sub -eq 1003 ] || [ $sub -eq 1248 ] || [ $sub -eq 1004 ]; then # bad data
+if [ $sub -eq 1240 ] || [ $sub -eq 1245 ] || [ $sub -eq 1247 ] || [ $sub -eq 1002 ] || [ $sub -eq 1003 ] || [ $sub -eq 1248 ] || [ $sub -eq 3186 ]; then # bad data
 	echo "skipping sub-${sub} for task-${task}"
 	exit
 fi
 
 # hopefully temporary:
-if [ $sub -eq 1002 ] || [ $sub -eq 1010 ] || [ $sub -eq 1253 ] || [ $sub -eq 1286 ]; then # bad data
+if [ $sub -eq 1002 ] || [ $sub -eq 1010 ] || [ $sub -eq 1253 ] ; then # bad data
 	echo "skipping sub-${sub} for task-${task}"
 	exit
 fi
