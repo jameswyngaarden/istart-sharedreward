@@ -13,7 +13,7 @@ logs=$maindir/logs
 logfile=${logs}/rerunL3_date-`date +"%FT%H%M"`.log
 
 # this loop defines the different types of analyses that will go into the group comparisons
-for analysis in act ppi_seed-NAcc; do # act nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
+for analysis in act; do # ppi_seed-NAcc act nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
 	analysistype=type-${analysis}
 
 	# these define the cope number (copenum) and cope name (copename)
@@ -43,7 +43,7 @@ for analysis in act ppi_seed-NAcc; do # act nppi-dmn nppi-ecn ppi_seed | type-${
 			copename=phys
 		fi
 
-		NCORES=12
+		NCORES=5
 		SCRIPTNAME=${maindir}/code/L3stats.sh
 		while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
 			sleep 1s

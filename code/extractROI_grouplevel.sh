@@ -12,9 +12,9 @@ for ROI in NAcc; do
 	outputdir=${maindir}/derivatives/imaging_plots
 	mkdir -p $outputdir
 
-	for COPENUM in 1 2 3 4 5 6; do
+	for COPENUM in 7; do
 		cnum_padded=`zeropad ${COPENUM} 2`
-		MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-2_task-${TASK}_n24_flame1
+		MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-2_task-${TASK}_n47_flame1
 		DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${cnum_padded}_*onegroup.gfeat/cope1.feat/filtered_func_data.nii.gz`
 		fslmeants -i $DATA -o ${outputdir}/${ROI}_type-${TYPE}_cope-${cnum_padded}.txt -m ${MASK}
 
