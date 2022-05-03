@@ -43,12 +43,12 @@ for analysis in act; do # ppi_seed-NAcc act nppi-dmn nppi-ecn ppi_seed | type-${
 			copename=phys
 		fi
 
-		NCORES=5
+		# NCORES=5
 		SCRIPTNAME=${maindir}/code/L3stats.sh
-		while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
+		# while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
 			sleep 1s
-		done
-		bash $SCRIPTNAME $copenum $copename $analysistype $logfile &
+		# done
+		bash $SCRIPTNAME $copenum $copename $analysistype $logfile # &
 
 	done
 done
