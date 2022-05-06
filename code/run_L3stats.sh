@@ -13,7 +13,7 @@ logs=$maindir/logs
 logfile=${logs}/rerunL3_date-`date +"%FT%H%M"`.log
 
 # this loop defines the different types of analyses that will go into the group comparisons
-for analysis in act; do # ppi_seed-NAcc act nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
+for analysis in act ppi_seed-VS_thr5; do # ppi_seed-NAcc act nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
 	analysistype=type-${analysis}
 
 	# these define the cope number (copenum) and cope name (copename)
@@ -35,21 +35,21 @@ for analysis in act; do # ppi_seed-NAcc act nppi-dmn nppi-ecn ppi_seed | type-${
 		if [ "${analysistype}" == "type-act" ] && [ "${copeinfo}" == "24 F-SC_rew-pun" ]; then
 			copenum=23
 			copename=F-SC_rew-pun
-		elif [ "${analysistype}" == "type-ppi_seed-NAcc" ] && [ "${copeinfo}" == "24 F-SC_rew-pun" ]; then
+		elif [ "${analysistype}" == "type-ppi_seed-VS_thr5" ] && [ "${copeinfo}" == "24 F-SC_rew-pun" ]; then
 			copenum=23
 			copename=F-SC_rew-pun
-		elif [ "${analysistype}" == "type-ppi_seed-NAcc" ] && [ "${copeinfo}" == "23 phys" ]; then
+		elif [ "${analysistype}" == "type-ppi_seed-VS_thr5" ] && [ "${copeinfo}" == "23 phys" ]; then
 			copenum=24
 			copename=phys
 		fi
 
-		#NCORES=5
+		NCORES=5
 		SCRIPTNAME=${maindir}/code/L3stats.sh
-		#while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
+		while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
 			sleep 1s
-		#done
-		bash $SCRIPTNAME $copenum $copename $analysistype $logfile # &
-		#sleep 1s
+		done
+		bash $SCRIPTNAME $copenum $copename $analysistype $logfile &
+		sleep 1s
 
 	done
 done
