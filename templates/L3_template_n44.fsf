@@ -339,7 +339,7 @@ set feat_files(21) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1282/
 set feat_files(22) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1286/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (23)
-set feat_files(23) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1294/L2_task-sharedreward_model-2_type-act_sm-6.gfeat"
+set feat_files(23) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1294/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"
 
 # 4D AVW data or FEAT directory (24)
 set feat_files(24) "/data/projects/istart-sharedreward/derivatives/fsl/sub-1301/L2_task-sharedreward_model-2_REPLACEME_sm-6.gfeat/copeCOPENUM.feat/stats/cope1.nii.gz"

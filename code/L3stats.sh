@@ -19,14 +19,14 @@ maindir="$(dirname "$scriptdir")"
 
 # study-specific inputs and general output folder
 task=sharedreward
-N=43
+N=44
 copenum=$1
 copenum_thresh_randomise=7 # actual contrasts start here. no need to do randomise main effects (e.g., reward > nothing/fixation/baseline)
 copename=$2
 REPLACEME=$3 # this defines the parts of the path that differ across analyses
 logfile=$4
 
-MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-3_task-${task}_n${N}_flame1_testing
+MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-3_task-${task}_n${N}_flame1_substance
 mkdir -p $MAINOUTPUT
 
 
