@@ -21,11 +21,11 @@ for ppi in "NAcc" "VS_thr5"; do # putting 0 first will indicate "activation"
 				echo "skipping both runs for sub-${sub} for task-${task}"
 				continue
 			fi
-			if [ $sub -eq 1002 ] || [ $sub -eq 3210 ] || [ $sub -eq 3218 ] && [ $run -eq 2 ]; then # bad data
+			if [ $sub -eq 1002 ] || [ $sub -eq 1248 ] ||[ $sub -eq 3210 ] || [ $sub -eq 3218 ] && [ $run -eq 2 ]; then # bad data
 				echo "skipping run-2 for sub-${sub} for task-${task}"
 				continue
 			fi
-			if [ $sub -eq 1248 ] || [ $sub -eq 3252 ] && [ $run -eq 1 ]; then # bad data
+			if [ $sub -eq 3252 ] && [ $run -eq 1 ]; then # bad data
 				echo "skipping run-1 for sub-${sub} for task-${task}"
 				continue
 			fi

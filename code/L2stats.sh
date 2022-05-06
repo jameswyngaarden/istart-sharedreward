@@ -22,7 +22,7 @@ if [ $sub -eq 1240 ] || [ $sub -eq 1245 ] || [ $sub -eq 1247 ] || [ $sub -eq 100
 fi
 
 # hopefully temporary:
-if [ $sub -eq 1002 ] || [ $sub -eq 1010 ] || [ $sub -eq 1253 ] ; then # bad data
+if [ $sub -eq 1002 ] || [ $sub -eq 1253 ] ; then # bad data
 	echo "skipping sub-${sub} for task-${task}"
 	exit
 fi
