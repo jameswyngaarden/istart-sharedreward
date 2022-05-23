@@ -8,11 +8,11 @@ clc
 %% Inputs
 currentdir = pwd;
 output_path = currentdir; % Set output path if you would like.% 
-input = '../../../ISTART-ALL-Combined-042122.xlsx'; % input file  %  
+input = '/data/projects/istart-sharedreward/derivatives/ISTART-ALL-Combined-042122.xlsx'; % input file  %  
 data = readtable(input);
 Composite_raw = [data.('ID'), data.('BISBAS_BAS'), data.('SPSRWD')];
-AUDIT_raw = [data.('ID'), data.('audit_1') + data.('audit_2') + data.('audit_3') + data.('audit_4') + data.('audit_5') + data.('audit_6') + data.('audit_7') + data.('audit_8') + data.('audit_9') + data.('audit_10')];
-DUDIT_raw = [data.('ID'), data.('dudit_1')+ data.('dudit_2')+ data.('dudit_3')+ data.('dudit_4') + data.('dudit_5') + data.('dudit_6')+ data.('dudit_7')+ data.('dudit_8')+ data.('dudit_9') + data.('dudit_10') + data.('dudit_11')];
+AUDIT_raw = [data.('ID'), data.('audit_standard_score')];
+DUDIT_raw = [data.('ID'), data.('dudit_standard_score')];
 
 make_reward = 0;
 make_substance = 1;
@@ -20,7 +20,7 @@ make_substance = 1;
 
 if make_reward == 1
    
-% Subjects reflect N=47.
+% Subjects reflect N=49.
     subjects = [1001, 1002, 1003, 1004, 1006, 1007, 1009, 1010, 1011, 1012, 1013, 1015, 1016, 1019, 1021, 1242, 1243, 1244, 1248, 1249, 1251, 1255, 1276, 1282, 1286, 1294, 1301, 1302, 1303, 3116, 3122, 3125, 3140, 3143, 3152, 3166, 3167, 3170, 3173, 3176, 3186, 3189, 3190, 3199, 3200, 3206, 3210, 3212, 3218, 3220];
 
 end
