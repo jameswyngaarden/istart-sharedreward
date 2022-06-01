@@ -11,7 +11,7 @@ logs=$maindir/logs
 logfile=${logs}/rerunL1_date-`date +"%FT%H%M"`.log
 
 
-for ppi in 0 "NAcc" "VS_thr5"; do # putting 0 first will indicate "activation"
+for ppi in 0 "VS_thr5"; do # # putting 0 first will indicate "activation"
 
 	for sub in `cat ${scriptdir}/newsubs.txt`; do
 	  for run in `seq $nruns`; do
