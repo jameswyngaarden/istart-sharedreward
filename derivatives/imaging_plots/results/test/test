@@ -1,0 +1,81 @@
+[Warning: MATLAB has disabled some advanced graphics rendering
+features by switching to software OpenGL. For more information, click
+<a href="matlab:opengl('problems')">here</a>.] 
+NAcc Reward different from zero?
+
+h =
+
+     0
+
+
+p =
+
+    0.6207
+
+
+ci =
+
+  -10.8948
+    6.5713
+
+
+stats = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    tstat: -0.4983
+       df: 46
+       sd: 29.7436
+
+NAcc Punishment different from zero?
+
+h =
+
+     1
+
+
+p =
+
+   6.9221e-04
+
+
+ci =
+
+  -19.2867
+   -5.5470
+
+
+stats = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    tstat: -3.6382
+       df: 46
+       sd: 23.3978
+
+NAcc Reward > Punishment?
+
+h =
+
+     1
+
+
+p =
+
+    0.0462
+
+
+ci =
+
+    0.1800
+   20.3301
+
+
+stats = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    tstat: 2.0489
+       df: 46
+       sd: 34.3143
+
