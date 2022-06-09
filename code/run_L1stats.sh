@@ -17,7 +17,7 @@ for ppi in 0 "VS_thr5"; do # # putting 0 first will indicate "activation"
 	  for run in `seq $nruns`; do
 
 			# some exceptions, hopefully temporary
-			if [ $sub -eq 3223 ]||[ $sub -eq 3164 ] ||[ $sub -eq 1300 ] ||[ $sub -eq 1253 ]; then # bad data
+			if [ $sub -eq 3223 ]; then # bad data ||[ $sub -eq 3164 ] ||[ $sub -eq 1300 ] ||[ $sub -eq 1253 ]
 				echo "skipping both runs for sub-${sub} for task-${task}"
 				continue
 			fi
