@@ -12,7 +12,7 @@ for ROI in VS_thr5; do
 	outputdir=${maindir}/derivatives/imaging_plots
 	mkdir -p $outputdir
 
-	for COPENUM in 7 8 9 10 11 13 14 16; do
+	for COPENUM in 1 2; do
 		cnum_padded=`zeropad ${COPENUM} 2`
 		MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-3_task-${TASK}_n45_flame1_SFN_edition
 		DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${cnum_padded}_*onegroup.gfeat/cope1.feat/filtered_func_data.nii.gz`

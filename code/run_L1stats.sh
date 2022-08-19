@@ -11,20 +11,20 @@ logs=$maindir/logs
 logfile=${logs}/rerunL1_date-`date +"%FT%H%M"`.log
 
 
-for ppi in 0 "VS_thr5"; do # # putting 0 first will indicate "activation"
+for ppi in "VS_thr5"; do # # putting 0 first will indicate "activation"
 
 	for sub in `cat ${scriptdir}/newsubs.txt`; do
 	  for run in `seq $nruns`; do
 
 			# some exceptions, hopefully temporary
-			if [ $sub -eq 3223 ]; then # bad data ||[ $sub -eq 3164 ] ||[ $sub -eq 1300 ] ||[ $sub -eq 1253 ]
-				echo "skipping both runs for sub-${sub} for task-${task}"
-				continue
-			fi
-			if [ $sub -eq 1002 ] ||[ $sub -eq 1003 ] || [ $sub -eq 3186 ] || [ $sub -eq 3210 ] || [ $sub -eq 3218 ] || [ $sub -eq 3152 ] && [ $run -eq 2 ]; then # bad data
-				echo "skipping run-2 for sub-${sub} for task-${task}"
-				continue
-			fi
+			#if [ $sub -eq 3223 ]; then # bad data ||[ $sub -eq 3164 ] ||[ $sub -eq 1300 ] ||[ $sub -eq 1253 ]
+			#	echo "skipping both runs for sub-${sub} for task-${task}"
+			#	continue
+			#fi
+			#if [ $sub -eq 1002 ] ||[ $sub -eq 1003 ] || [ $sub -eq 3186 ] || [ $sub -eq 3210 ] || [ $sub -eq 3218 ] || [ $sub -eq 3152 ] && [ $run -eq 2 ]; then # bad data
+			#	echo "skipping run-2 for sub-${sub} for task-${task}"
+			#	continue
+			#fi
 
 	  	# Manages the number of jobs and cores
 	  	SCRIPTNAME=${maindir}/code/L1stats.sh

@@ -26,7 +26,7 @@ copename=$2
 REPLACEME=$3 # this defines the parts of the path that differ across analyses
 logfile=$4
 
-MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-3_task-${task}_n${N}_flame1_SFN_edition
+MAINOUTPUT=${maindir}/derivatives/fsl/L3_model-2_task-${task}_n${N}_flame1_SFN_edition
 mkdir -p $MAINOUTPUT
 
 

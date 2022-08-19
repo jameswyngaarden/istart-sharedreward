@@ -6,7 +6,7 @@ maindir="$(dirname "$scriptdir")"
 
 for sub in `cat ${maindir}/code/newsubs.txt`; do	
 	# ROI name and other path information
-	for ROI in seed-VS_thr5; do
+	for ROI in ppi_C10_FS-C_z8_sub-neg_cluster1 ppi_C10_FS-C_z8_sub-neg_cluster2 ppi_C13_rew-pun_F-C_z12_su-rs2_cluster1 ppi_C13_rew-pun_F-C_z1_main-effect ppi_C16_rew_F-C_z1_main-effect_cluster1 ppi_C16_rew_F-C_z1_main-effect_cluster2 ppi_C21_rew_F-SC_z1_main-effect ppi_C23_rew-pun_F-SC_z12_sub-neg_cluster1 ppi_c9_F-C_sub-neg; do
 		for TASK in sharedreward; do
 			for run in 1 2; do
 				MASK=${maindir}/masks/${ROI}.nii.gz

@@ -21,7 +21,7 @@ sub=$1
 run=$2
 ppi=$3 # 0 for activation, otherwise seed region or network
 logfile=$4
-model=3
+model=2
 echo sub: ${sub} run: ${run} ppi: ${ppi} logfile: ${logfile}
 
 # set inputs and general outputs (should not need to chage across studies in Smith Lab)
