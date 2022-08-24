@@ -1,0 +1,28 @@
+seed-VS_thr5 R_F, R_S, and R_C difference?
+
+p =
+
+   5.7326e-07
+
+
+tb1 =
+
+  4×6 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
+
+    {'Source' }    {'SS'        }    {'df' }    {'MS'        }    {'F'       }    {'Prob>F'    }
+    {'Columns'}    {[2.0801e+04]}    {[  5]}    {[4.1601e+03]}    {[  7.9180]}    {[5.7326e-07]}
+    {'Error'  }    {[1.3871e+05]}    {[264]}    {[  525.4043]}    {0×0 double}    {0×0 double  }
+    {'Total'  }    {[1.5951e+05]}    {[269]}    {0×0 double  }    {0×0 double}    {0×0 double  }
+
+
+stats = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    gnames: [6×1 char]
+         n: [45 45 45 45 45 45]
+    source: 'anova1'
+     means: [9.2544 0.2149 -2.7515 -14.4895 -14.1214 -12.5378]
+        df: 264
+         s: 22.9217
+
