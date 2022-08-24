@@ -11,11 +11,17 @@ mkdir -p $outputdir
 
 	# ROI name and other path information
 for ROI in ppi_C10_FS-C_z8_sub-neg_cluster1 ppi_C10_FS-C_z8_sub-neg_cluster2 ppi_C13_rew-pun_F-C_z12_su-rs2_cluster1 ppi_C13_rew-pun_F-C_z1_main-effect ppi_C16_rew_F-C_z1_main-effect_cluster1 ppi_C16_rew_F-C_z1_main-effect_cluster2 ppi_C21_rew_F-SC_z1_main-effect ppi_C23_rew-pun_F-SC_z12_sub-neg_cluster1 ppi_c9_F-C_sub-neg; do
+
+#seed-VS_thr5; do #activation
+
+#ppi ROIs: #seed-pTPJ-thr seed-vmPFC-5mm-thr seed-mPFC-thr; do
+
+#ppi exploratory: #ppi_C10_FS-C_z8_sub-neg_cluster1 ppi_C10_FS-C_z8_sub-neg_cluster2 ppi_C13_rew-pun_F-C_z12_su-rs2_cluster1 ppi_C13_rew-pun_F-C_z1_main-effect ppi_C16_rew_F-C_z1_main-effect_cluster1 ppi_C16_rew_F-C_z1_main-effect_cluster2 ppi_C21_rew_F-SC_z1_main-effect ppi_C23_rew-pun_F-SC_z12_sub-neg_cluster1 ppi_c9_F-C_sub-neg; do
 	for TASK in sharedreward; do
 		MASK=${maindir}/masks/${ROI}.nii.gz
 		#MASK=${maindir}/masks/seed-${ROI}.nii.gz
-		TYPE=ppi_seed-VS_thr5
-		for COPENUM in 1 2 3 4 5 6; do # act
+		TYPE=act
+		for COPENUM in 10 13 16 21 23; do # act
 			cnum_padded=`zeropad ${COPENUM} 2`
 			DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${cnum_padded}_*.gfeat/cope1.feat/filtered_func_data.nii.gz`
 			fslmeants -i $DATA -o ${outputdir}/${ROI}_type-${TYPE}_cope-${cnum_padded}.txt -m ${MASK}
