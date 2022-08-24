@@ -20,8 +20,8 @@ for ROI in ppi_C10_FS-C_z8_sub-neg_cluster1 ppi_C10_FS-C_z8_sub-neg_cluster2 ppi
 	for TASK in sharedreward; do
 		MASK=${maindir}/masks/${ROI}.nii.gz
 		#MASK=${maindir}/masks/seed-${ROI}.nii.gz
-		TYPE=act
-		for COPENUM in 10 13 16 21 23; do # act
+		TYPE=ppi_seed-VS_thr5
+		for COPENUM in 9 10 13 16 21 23; do # act
 			cnum_padded=`zeropad ${COPENUM} 2`
 			DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${cnum_padded}_*.gfeat/cope1.feat/filtered_func_data.nii.gz`
 			fslmeants -i $DATA -o ${outputdir}/${ROI}_type-${TYPE}_cope-${cnum_padded}.txt -m ${MASK}
