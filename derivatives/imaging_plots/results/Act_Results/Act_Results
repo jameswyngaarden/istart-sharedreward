@@ -1,28 +1,13 @@
-seed-VS_thr5 R_F, R_S, and R_C difference?
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('load')" style="font-weight:bold">load</a>
+Unable to read file
+'/data/projects/istart-sharedreward/derivatives/imaging_plots/ppi_C16_rew_F-C_z1_main-effect_cluster1.nii.gz_type-ppi_seed-VS_thr5_cope-04.txt'.
+No such file or directory.
 
-p =
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_sharedreward', '/data/projects/istart-sharedreward/code/plot_sharedreward.m', 51)" style="font-weight:bold">plot_sharedreward</a> (<a href="matlab: opentoline('/data/projects/istart-sharedreward/code/plot_sharedreward.m',51,0)">line 51</a>)
+            R_F = load(strjoin([roidir,roi,model,R_Friend], ''));
 
-   5.7326e-07
-
-
-tb1 =
-
-  4×6 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
-
-    {'Source' }    {'SS'        }    {'df' }    {'MS'        }    {'F'       }    {'Prob>F'    }
-    {'Columns'}    {[2.0801e+04]}    {[  5]}    {[4.1601e+03]}    {[  7.9180]}    {[5.7326e-07]}
-    {'Error'  }    {[1.3871e+05]}    {[264]}    {[  525.4043]}    {0×0 double}    {0×0 double  }
-    {'Total'  }    {[1.5951e+05]}    {[269]}    {0×0 double  }    {0×0 double}    {0×0 double  }
-
-
-stats = 
-
-  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
-
-    gnames: [6×1 char]
-         n: [45 45 45 45 45 45]
-    source: 'anova1'
-     means: [9.2544 0.2149 -2.7515 -14.4895 -14.1214 -12.5378]
-        df: 264
-         s: 22.9217
-
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotROIdata_shared', '/data/projects/istart-sharedreward/code/plotROIdata_shared.m', 43)" style="font-weight:bold">plotROIdata_shared</a> (<a href="matlab: opentoline('/data/projects/istart-sharedreward/code/plotROIdata_shared.m',43,0)">line 43</a>)
+        plot_sharedreward(name, roidir, rois, models, R_Friend, R_Stranger, R_Computer, P_Friend, P_Stranger, P_Computer, type)
+} 
+opentoline('/data/projects/istart-sharedreward/code/plotROIdata_shared.m',43,0)
+plotROIdata_shared

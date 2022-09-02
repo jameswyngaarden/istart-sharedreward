@@ -19,7 +19,7 @@ maindir = '/data/projects/istart-sharedreward';
 roidir = '/data/projects/istart-sharedreward/derivatives/imaging_plots/'; % Results from extractROI script.
 resultsdir = '/data/projects/istart-sharedreward/derivatives/imaging_plots/results/'; % Output where results will be saved.
 
-rois = {'seed-VS_thr5'}; %'seed-VS_thr5' %'seed-vmPFC-5mm-thr' 'seed-mPFC-thr' 'seed-pTPJ-thr' %'ppi_C10_FS-C_z8_sub-neg_cluster1'} 
+rois = {'act_C14_rew_F-S_z1_main', 'act_C16_rew_F-S_z1_main_cluster1', 'act_C16_rew_F-S_z1_main_cluster2'}; %'seed-VS_thr5' %'seed-vmPFC-5mm-thr' 'seed-mPFC-thr' 'seed-pTPJ-thr' %'ppi_C10_FS-C_z8_sub-neg_cluster1'} 
 models = {'_type-act_'}; % {'_type-act_'}; {'_type-ppi_seed-VS_thr5_'};
 
 % Test hypotheses:
@@ -30,7 +30,7 @@ H3 = 1;
 
 if H3 == 1
    
-        name = 'Act_Results';
+        name = 'Activation_Results';
         R_Friend = {'cope-04.txt'};
         R_Stranger = {'cope-06.txt'};
         R_Computer = {'cope-02.txt'};

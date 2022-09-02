@@ -64,6 +64,8 @@ After you've ensured the local source data is current, you then run the followin
   - `nohup bash code/run_L1stats.sh > nohup_L1stats.out &` (wait till this is done before running L2stats.sh)
   - `nohup bash code/run_L2stats.sh > nohup_L2stats.out &`
 1. review *.out logs from `nohup`. (if no errors, delete them. if errors, report on Asana and raise at lab meeting)
+  - - `nohup bash code/run_L3stats.sh > nohup_L3stats.out &`
+1. for L3 analyses, and run activation and ppi separately, making sure to change the model number for the inputs. Activations are titled model 3 and PPI are titled model 2.
 
 
 

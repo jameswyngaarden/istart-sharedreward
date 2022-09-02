@@ -55,10 +55,11 @@ clc
             P_S = load(strjoin([roidir,roi,model,P_Stranger], ''));
             P_C = load(strjoin([roidir,roi,model,P_Computer], ''));
             
-           
-            figure, barweb_dvs2([mean(R_F); mean(R_S); mean(R_C); mean(P_F); mean(P_S); mean(P_C)], [std(R_F)/sqrt(length(R_F)); std(R_S)/sqrt(length(R_S)); std(R_C)/sqrt(length(R_C)); std(P_F)/sqrt(length(P_F)); std(P_S)/sqrt(length(P_S)); std(P_C)/sqrt(length(P_C))]);
+            reward = [R_F R_S R_C];
+            punish = [P_F P_S P_C];
+            figure, barweb_dvs2([mean(reward); mean(punish)],[std(reward)/sqrt(length(reward)); std(punish)/sqrt(length(punish)) ])
             xlabel('Task Condition');
-            xticks([0.65, 0.775, 0.9, 1.1, 1.225, 1.35]);
+            xticks([0.63, 0.92, 1.21, 1.69, 1.98, 2.27]);
             xticklabels({'R_F','R_S','R_C','P_F','P_S','P_C'});
             ylabel('BOLD Response');
             %legend({'DGP', 'UGP', 'UGR'},'Location','northeast');
