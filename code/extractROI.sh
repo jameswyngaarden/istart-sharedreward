@@ -10,7 +10,7 @@ mkdir -p $outputdir
 
 
 	# ROI name and other path information
-for ROI in act_C14_rew_F-S_z8_sub; do
+for ROI in act_C14_rew_F-S_z2_sub; do
 
 #seed-VS_thr5; do #activation
 
