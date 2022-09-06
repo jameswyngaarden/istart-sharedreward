@@ -1,0 +1,11 @@
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('load')" style="font-weight:bold">load</a>
+Unable to find file or directory
+'/data/projects/istart-sharedreward/derivatives/imaging_plots/ppi_C21_rew_F-SC_z1_main-effect_type-act_cope-04.txt'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_sharedreward', '/data/projects/istart-sharedreward/code/plot_sharedreward.m', 51)" style="font-weight:bold">plot_sharedreward</a> (<a href="matlab: opentoline('/data/projects/istart-sharedreward/code/plot_sharedreward.m',51,0)">line 51</a>)
+            R_F = load(strjoin([roidir,roi,model,R_Friend], ''));
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotROIdata_shared', '/data/projects/istart-sharedreward/code/plotROIdata_shared.m', 43)" style="font-weight:bold">plotROIdata_shared</a> (<a href="matlab: opentoline('/data/projects/istart-sharedreward/code/plotROIdata_shared.m',43,0)">line 43</a>)
+        plot_sharedreward(name, roidir, rois, models, R_Friend, R_Stranger, R_Computer, P_Friend, P_Stranger, P_Computer, type)
+} 
+opentoline('/data/projects/istart-sharedreward/code/plotROIdata_shared.m',43,0)

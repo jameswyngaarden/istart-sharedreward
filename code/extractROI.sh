@@ -10,7 +10,7 @@ mkdir -p $outputdir
 
 
 	# ROI name and other path information
-for ROI in act_C16_rew_F-S_z2_sub_cluster1 act_C16_rew_F-S_z2_sub_cluster2 act_C16_rew_F-S_z2_sub_cluster3; do
+for ROI in act_C13_rew-pun_F-C_z10_rs2-neg act_C13_rew-pun_F-C_z9_rs-neg_cluster1 act_C13_rew-pun_F-C_z9_rs-neg_cluster2 act_C16_rew_F-C_z2_sub_cluster1 act_C16_rew_F-C_z2_sub_cluster2 act_C16_rew_F-C_z2_sub_cluster3; do
 
 #seed-VS_thr5; do #activation
 
@@ -21,7 +21,7 @@ for ROI in act_C16_rew_F-S_z2_sub_cluster1 act_C16_rew_F-S_z2_sub_cluster2 act_C
 		MASK=${maindir}/masks/${ROI}.nii.gz
 		#MASK=${maindir}/masks/seed-${ROI}.nii.gz
 		TYPE=act
-		for COPENUM in 16; do # act
+		for COPENUM in 13 14; do # act
 			cnum_padded=`zeropad ${COPENUM} 2`
 			DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${cnum_padded}_*.gfeat/cope1.feat/filtered_func_data.nii.gz`
 			fslmeants -i $DATA -o ${outputdir}/${ROI}_type-${TYPE}_cope-${cnum_padded}.txt -m ${MASK}
