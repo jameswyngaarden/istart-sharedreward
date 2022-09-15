@@ -13,9 +13,9 @@ library("interactions")
 library("car")
 library("dplyr")
 
-setwd("GitHub/istart-sharedreward/derivatives/")
+setwd("../derivatives/")
 maindir <- getwd()
-datadir <- file.path("derivatives/")
+datadir <- file.path("../derivatives/")
 
 # import data
 #here()
@@ -127,7 +127,7 @@ sharedreward$quant <- cut(sharedreward$RS_square,
 sharedreward$quant
 
 ggplot(data = sharedreward, aes(x=SU,y=`ppi_C13_rew-pun_F-C_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-13`))+
-  geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)
+  geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
 
 ggplot(data = sharedreward, aes(x=SU,y=`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-23`))+
-  geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)
+  geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
