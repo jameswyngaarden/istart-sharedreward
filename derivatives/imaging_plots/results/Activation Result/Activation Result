@@ -1,0 +1,24 @@
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+      bars: [1×3 Bar]
+    legend: []
+    errors: [1×3 ErrorBar]
+        ax: [1×1 Axes]
+
+{Error using inputcheck
+Multiple inputs that look like file names: '/data/projects/istart-sharedreward/derivatives/imaging_plots/results/Activation' and
+'Result/seed-vmPFC-5mm-thr_type-ppi_seed-VS_thr5_'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('print', '/usr/local/MATLAB/R2022a/toolbox/matlab/graphics/printing/print.m', 41)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2022a/toolbox/matlab/graphics/printing/print.m',41,0)">line 41</a>)
+[pj, devices, options ] = inputcheck( pj, inputargs{:} );
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_sharedreward', '/data/projects/istart-sharedreward/code/plot_sharedreward.m', 70)" style="font-weight:bold">plot_sharedreward</a> (<a href="matlab: opentoline('/data/projects/istart-sharedreward/code/plot_sharedreward.m',70,0)">line 70</a>)
+            eval(cmd);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotROIdata_shared', '/data/projects/istart-sharedreward/code/plotROIdata_shared.m', 43)" style="font-weight:bold">plotROIdata_shared</a> (<a href="matlab: opentoline('/data/projects/istart-sharedreward/code/plotROIdata_shared.m',43,0)">line 43</a>)
+        plot_sharedreward(name, roidir, rois, models, R_Friend, R_Stranger, R_Computer, P_Friend, P_Stranger, P_Computer, type)
+} 
+plotROIdata_shared
