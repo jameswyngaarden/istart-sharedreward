@@ -72,7 +72,12 @@ clc
             
             % Different from each other (DGP, UGP, and UGR)? 
             disp([roi ' R_F, R_S, and R_C difference?'])
-            [p,tb1,stats]=anova1([R_F,R_S,R_C,P_F,P_S,P_C])
+            %[p,tb1,stats]=anova1([R_F,R_S,R_C,P_F,P_S,P_C])
+            [p,tb1,stats]=anova1([R_F,R_S,R_C])
+
+            % Multiple regression
+            %tb1 = [R_F,R_S,R_C,P_F,P_S,P_C];
+            %md1 = fitlm(tb1,'')
             
         end  
     end

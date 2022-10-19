@@ -13,7 +13,7 @@ logs=$maindir/logs
 logfile=${logs}/rerunL3_date-`date +"%FT%H%M"`.log
 
 # this loop defines the different types of analyses that will go into the group comparisons
-for analysis in ppi_seed-VS_thr5; do # act ppi_seed-VS_thr5 ppi_seed-NAcc act nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
+for analysis in act; do # act ppi_seed-VS_thr5 ppi_seed-NAcc act nppi-dmn nppi-ecn ppi_seed | type-${type}_run-01
 	analysistype=type-${analysis}
 
 	# these define the cope number (copenum) and cope name (copename)
