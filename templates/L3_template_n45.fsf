@@ -179,13 +179,13 @@ set fmri(threshmask) ""
 # 1 : Uncorrected
 # 2 : Voxel
 # 3 : Cluster
-set fmri(thresh) 2
+set fmri(thresh) 3
 
 # P threshold
 set fmri(prob_thresh) 0.05
 
 # Z threshold
-set fmri(z_thresh) 3.1
+set fmri(z_thresh) 3.5
 
 # Z min/max for colour rendering
 # 0 : Use actual Z min/max

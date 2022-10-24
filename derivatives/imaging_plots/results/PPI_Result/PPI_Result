@@ -1,81 +1,3 @@
-[Warning: MATLAB has disabled some advanced graphics rendering features by switching to software OpenGL. For
-more information, click <a href="matlab:opengl('problems')">here</a>.] 
-
-ans = 
-
-  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
-
-      bars: [1×3 Bar]
-    legend: []
-    errors: [1×3 ErrorBar]
-        ax: [1×1 Axes]
-
-seed-vmPFC-5mm-thr R_F, R_S, and R_C difference?
-
-p =
-
-    0.7889
-
-
-tb1 =
-
-  4×6 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
-
-    {'Source' }    {'SS'    }    {'df' }    {'MS'      }    {'F'       }    {'Prob>F'  }
-    {'Columns'}    {[0.0306]}    {[  2]}    {[  0.0153]}    {[  0.2376]}    {[  0.7889]}
-    {'Error'  }    {[8.5025]}    {[132]}    {[  0.0644]}    {0×0 double}    {0×0 double}
-    {'Total'  }    {[8.5331]}    {[134]}    {0×0 double}    {0×0 double}    {0×0 double}
-
-
-stats = 
-
-  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
-
-    gnames: [3×1 char]
-         n: [45 45 45]
-    source: 'anova1'
-     means: [-0.0634 -0.0772 -0.0407]
-        df: 132
-         s: 0.2538
-
-
-ans = 
-
-  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
-
-      bars: [1×3 Bar]
-    legend: []
-    errors: [1×3 ErrorBar]
-        ax: [1×1 Axes]
-
-seed-mPFC-thr R_F, R_S, and R_C difference?
-
-p =
-
-    0.4781
-
-
-tb1 =
-
-  4×6 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
-
-    {'Source' }    {'SS'    }    {'df' }    {'MS'      }    {'F'       }    {'Prob>F'  }
-    {'Columns'}    {[0.0258]}    {[  2]}    {[  0.0129]}    {[  0.7421]}    {[  0.4781]}
-    {'Error'  }    {[2.2947]}    {[132]}    {[  0.0174]}    {0×0 double}    {0×0 double}
-    {'Total'  }    {[2.3205]}    {[134]}    {0×0 double}    {0×0 double}    {0×0 double}
-
-
-stats = 
-
-  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
-
-    gnames: [3×1 char]
-         n: [45 45 45]
-    source: 'anova1'
-     means: [0.0041 -0.0226 0.0088]
-        df: 132
-         s: 0.1318
-
 
 ans = 
 
@@ -113,4 +35,118 @@ stats =
      means: [0.0498 -0.0071 -0.0127]
         df: 132
          s: 0.1309
+
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+      bars: [1×3 Bar]
+    legend: []
+    errors: [1×3 ErrorBar]
+        ax: [1×1 Axes]
+
+target-pcc_bin R_F, R_S, and R_C difference?
+
+p =
+
+    0.3332
+
+
+tb1 =
+
+  4×6 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
+
+    {'Source' }    {'SS'    }    {'df' }    {'MS'      }    {'F'       }    {'Prob>F'  }
+    {'Columns'}    {[0.0248]}    {[  2]}    {[  0.0124]}    {[  1.1083]}    {[  0.3332]}
+    {'Error'  }    {[1.4748]}    {[132]}    {[  0.0112]}    {0×0 double}    {0×0 double}
+    {'Total'  }    {[1.4996]}    {[134]}    {0×0 double}    {0×0 double}    {0×0 double}
+
+
+stats = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    gnames: [3×1 char]
+         n: [45 45 45]
+    source: 'anova1'
+     means: [0.0273 0.0062 -0.0055]
+        df: 132
+         s: 0.1057
+
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+      bars: [1×3 Bar]
+    legend: []
+    errors: [1×3 ErrorBar]
+        ax: [1×1 Axes]
+
+target-FFA_bin R_F, R_S, and R_C difference?
+
+p =
+
+    0.4895
+
+
+tb1 =
+
+  4×6 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
+
+    {'Source' }    {'SS'    }    {'df' }    {'MS'      }    {'F'       }    {'Prob>F'  }
+    {'Columns'}    {[0.0713]}    {[  2]}    {[  0.0357]}    {[  0.7183]}    {[  0.4895]}
+    {'Error'  }    {[6.5524]}    {[132]}    {[  0.0496]}    {0×0 double}    {0×0 double}
+    {'Total'  }    {[6.6237]}    {[134]}    {0×0 double}    {0×0 double}    {0×0 double}
+
+
+stats = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    gnames: [3×1 char]
+         n: [45 45 45]
+    source: 'anova1'
+     means: [0.0170 -0.0326 -0.0308]
+        df: 132
+         s: 0.2228
+
+
+ans = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+      bars: [1×3 Bar]
+    legend: []
+    errors: [1×3 ErrorBar]
+        ax: [1×1 Axes]
+
+target-vmPFC_bin R_F, R_S, and R_C difference?
+
+p =
+
+    0.7311
+
+
+tb1 =
+
+  4×6 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
+
+    {'Source' }    {'SS'    }    {'df' }    {'MS'      }    {'F'       }    {'Prob>F'  }
+    {'Columns'}    {[0.0255]}    {[  2]}    {[  0.0127]}    {[  0.3139]}    {[  0.7311]}
+    {'Error'  }    {[5.3520]}    {[132]}    {[  0.0405]}    {0×0 double}    {0×0 double}
+    {'Total'  }    {[5.3775]}    {[134]}    {0×0 double}    {0×0 double}    {0×0 double}
+
+
+stats = 
+
+  <a href="matlab:helpPopup struct" style="font-weight:bold">struct</a> with fields:
+
+    gnames: [3×1 char]
+         n: [45 45 45]
+    source: 'anova1'
+     means: [0.0193 0.0038 0.0374]
+        df: 132
+         s: 0.2014
 
