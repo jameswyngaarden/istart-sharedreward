@@ -1,5 +1,5 @@
 # set working directory
-#library(here)
+library("here")
 
 # load packages
 library("readxl")
@@ -13,13 +13,16 @@ library("interactions")
 library("car")
 library("dplyr")
 
-setwd("../derivatives/")
+setwd("C:/Users/tup54227/Documents/GitHub/istart-sharedreward/derivatives/")
 maindir <- getwd()
 datadir <- file.path("../derivatives/")
 
 # import data
 #here()
 sharedreward <- read_excel("ppi_wholebrain_scatterplot.xls")
+behavioral <- read_excel("ISTART-ALL-Combined-042122.xlsx")
+merge.data.frame(x = sharedreward, y = behavioral, by = intersect(sub(x),sub(y)))
+srpr <- read.csv("../../istart/Shared_Reward/Behavioral_Analysis/SharedRewardPeerRatingsLongform.csv")
 
 
 # Shared Reward Model 2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -131,3 +134,5 @@ ggplot(data = sharedreward, aes(x=SU,y=`ppi_C13_rew-pun_F-C_z12_su-rs2-neg_clust
 
 ggplot(data = sharedreward, aes(x=SU,y=`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-23`))+
   geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
+
+model17 = lm(Rating ~ Trait * Partner, data=sharedreward)
