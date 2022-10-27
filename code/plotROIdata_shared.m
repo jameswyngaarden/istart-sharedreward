@@ -19,7 +19,7 @@ maindir = '/data/projects/istart-sharedreward';
 roidir = '/data/projects/istart-sharedreward/derivatives/imaging_plots/'; % Results from extractROI script.
 resultsdir = '/data/projects/istart-sharedreward/derivatives/imaging_plots/results/'; % Output where results will be saved.
 
-rois = {'seed-pTPJ-thr' 'target-pcc_bin' 'target-FFA_bin' 'target-vmPFC_bin'}; %'seed-VS_thr5' 'seed-vmPFC-5mm-thr' 'seed-mPFC-thr' %'act_C14_rew_F-S_z1_main_cluster2' %'ppi_C10_FS-C_z8_sub-neg_cluster1'} 
+rois = {'resampled_aTPJ-thr50-2mm' 'resampled_pTPJ-thr50-2mm'}; % 'target-pcc_bin' 'target-FFA_bin' 'target-vmPFC_bin'}; %'seed-VS_thr5' 'seed-vmPFC-5mm-thr' 'seed-mPFC-thr' %'act_C14_rew_F-S_z1_main_cluster2' %'ppi_C10_FS-C_z8_sub-neg_cluster1'} 
 models = {'_type-ppi_seed-VS_thr5_'}; % {'_type-act_'}; {'_type-ppi_seed-VS_thr5_'};
 
 % Test hypotheses:

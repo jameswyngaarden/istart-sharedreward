@@ -70,10 +70,32 @@ clc
             eval(cmd);
             saveas(gca, fullfile(outname), 'svg');
             
-            % Different from each other (DGP, UGP, and UGR)? 
+            % Two factor ANOVA on reward and punishment vs friend,
+            % stranger, and computer
+            Reward = [R_F, R_S, R_C]
+            Punishment = [P_F, P_S, P_C]
+            sample = 45
             disp([roi ' R_F, R_S, and R_C difference?'])
-            %[p,tb1,stats]=anova1([R_F,R_S,R_C,P_F,P_S,P_C])
-            [p,tb1,stats]=anova1([R_F,R_S,R_C])
+            matrix = [Reward; Punishment]
+            [~,~,stats]=anova2(matrix, sample)
+            %[p,tb1,stats]=anova1([R_F,R_S,R_C])
+
+            % different from zero?
+%             disp([roi ' Reward with Friend different from zero?'])
+%             [h,p,ci,stats] = ttest(R_F)
+%             disp([roi ' Reward with Stranger different from zero?'])
+%             [h,p,ci,stats] = ttest(R_S)
+%             disp([roi ' Reward with Computer different from zero?'])
+%             [h,p,ci,stats] = ttest(R_C)
+%             
+%             % Different from each other (R_F and R_S only)?
+%             disp([roi ' Reward with Friend > Reward with Stranger?'])
+%             [h,p,ci,stats] = ttest(R_F, R_S)
+%             
+%              % Different from each other (R_F and R_C only)?
+%             disp([roi ' Reward with Friend > Reward with Computer?'])
+%             [h,p,ci,stats] = ttest(R_F, R_C)
+            
 
             % Multiple regression
             %tb1 = [R_F,R_S,R_C,P_F,P_S,P_C];
