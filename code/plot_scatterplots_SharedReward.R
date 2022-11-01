@@ -12,6 +12,7 @@ library("umx")
 library("interactions")
 library("car")
 library("dplyr")
+library (tidyverse)
 
 setwd("C:/Users/tup54227/Documents/GitHub/istart-sharedreward/derivatives/")
 maindir <- getwd()
@@ -21,7 +22,7 @@ datadir <- file.path("../derivatives/")
 #here()
 sharedreward <- read_excel("ppi_wholebrain_scatterplot.xls")
 behavioral <- read_excel("ISTART-ALL-Combined-042122.xlsx")
-merge.data.frame(x = sharedreward, y = behavioral, by = intersect(sub(x),sub(y)))
+total <- inner_join(sharedreward, behavioral, by = "sub")
 srpr <- read.csv("../../istart/Shared_Reward/Behavioral_Analysis/SharedRewardPeerRatingsLongform.csv")
 
 
@@ -55,7 +56,7 @@ model5 <- lm(`ppi_C13_rew-pun_F-C_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_
 model5
 crPlots(model5, smooth=FALSE)
 
-# Reward with Friend v Computer, zstat 1 cluster 1 (main effect) Ventral Striatum ppi seed
+# IMPORTANT -- VS-FFA Connectivity: Reward with Friend v Computer, zstat 1 cluster 1 (main effect) Ventral Striatum ppi seed
 model6 <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16` ~
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model6
@@ -135,4 +136,4 @@ ggplot(data = sharedreward, aes(x=SU,y=`ppi_C13_rew-pun_F-C_z12_su-rs2-neg_clust
 ggplot(data = sharedreward, aes(x=SU,y=`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-23`))+
   geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
 
-model17 = lm(Rating ~ Trait * Partner, data=sharedreward)
+model18 = lm(Rating ~ Trait * Partner, data=sharedreward)
