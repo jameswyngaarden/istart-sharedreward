@@ -22,11 +22,27 @@ datadir <- file.path("../derivatives/")
 #here()
 sharedreward <- read_excel("ppi_wholebrain_scatterplot.xls")
 behavioral <- read_excel("ISTART-ALL-Combined-042122.xlsx")
-total <- inner_join(sharedreward, behavioral, by = "sub")
-srpr <- read.csv("../../istart/Shared_Reward/Behavioral_Analysis/SharedRewardPeerRatingsLongform.csv")
+df_TPJ <- read_excel("df_TPJ.xlsx")
+total <- inner_join(sharedreward, df_TPJ, by = "sub")
+#srpr <- read.csv("../../istart/Shared_Reward/Behavioral_Analysis/SharedRewardPeerRatingsLongform.csv")
 
 
 # Shared Reward Model 2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+VS_substance_F_C <- lm(`VS_seed_F_C` ~ tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+summary(VS_substance_F_C)
+crModel <- crPlots(VS_substance_F_C,
+                   smooth=FALSE,
+                   pch=21, #shape of dot
+                   col='black', #dot outline color
+                   bg='blue', #unclear
+                   col.lines='yellow', #trend line color
+                   lwd=1,
+                   grid=FALSE)
+
+VS_substance_F_S <- lm(`VS_seed_F_S` ~ tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+summary(VS_substance_F_S)
+crPlots(VS_substance_F_S, smooth=FALSE)
 
 # Friend v Computer, zstat 8 cluster (SU-neg) Ventral Striatum ppi seed
 model1 <- lm(`ppi_c9_F-C_sub-neg_type-ppi_seed-VS_thr5_cope-09` ~ tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
@@ -54,6 +70,7 @@ crPlots(model4, smooth=FALSE)
 model5 <- lm(`ppi_C13_rew-pun_F-C_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-13` ~
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model5
+summary(model5)
 crPlots(model5, smooth=FALSE)
 
 # IMPORTANT -- VS-FFA Connectivity: Reward with Friend v Computer, zstat 1 cluster 1 (main effect) Ventral Striatum ppi seed
@@ -61,6 +78,7 @@ model6 <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model6
 crPlots(model6, smooth=FALSE)
+summary(model6)
 
 # Reward with Friend v Computer, zstat 1 cluster 2 (main effect) Ventral Striatum ppi seed
 model7 <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster2_type-ppi_seed-VS_thr5_cope-16` ~
@@ -121,14 +139,15 @@ crPlots(model15, smooth=FALSE)
 model16 <- lm(`act_C14_rew_F-S_z2_sub_type-act_cope-14` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model16
+summary(model16)
 crPlots(model16, smooth=FALSE)
 
 
 
-sharedreward$quant <- cut(sharedreward$RS_square,
+total$quant <- cut(sharedreward$RS_square,
                           breaks = 2,
                           labels = c("1","2"))
-sharedreward$quant
+total$quant
 
 ggplot(data = sharedreward, aes(x=SU,y=`ppi_C13_rew-pun_F-C_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-13`))+
   geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
@@ -136,4 +155,38 @@ ggplot(data = sharedreward, aes(x=SU,y=`ppi_C13_rew-pun_F-C_z12_su-rs2-neg_clust
 ggplot(data = sharedreward, aes(x=SU,y=`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-23`))+
   geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
 
-model18 = lm(Rating ~ Trait * Partner, data=sharedreward)
+ggplot(data = total, aes(x=SU,y=`pTPJ_R-P_F-S`))+
+  geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
+
+ggplot(data = total, aes(x=SU,y=`aTPJ_R-P_F-S`))+
+  geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
+
+
+model17 = lm(Rating ~ Trait * Partner, data=sharedreward)
+
+
+#TPJ ROI multiple regressions
+
+model18 <- lm(`aTPJ_R-P_F-C` ~
+                          tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=total)
+model18
+crPlots(model18, smooth=FALSE)
+summary(model18)
+
+model19 <- lm(`aTPJ_R-P_F-S` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=total)
+model19
+crPlots(model19, smooth=FALSE)
+summary(model19)
+
+model20 <- lm(`pTPJ_R-P_F-C` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=total)
+model20
+crPlots(model20, smooth=FALSE)
+summary(model20)
+
+model21 <- lm(`pTPJ_R-P_F-S` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=total)
+model21
+crPlots(model21, smooth=FALSE)
+summary(model21)
