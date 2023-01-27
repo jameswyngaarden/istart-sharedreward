@@ -13,7 +13,8 @@ logfile=${logs}/rerunL1_date-`date +"%FT%H%M"`.log
 
 for ppi in "VS_thr5"; do # # putting 0 first will indicate "activation"
 
-	for sub in `cat ${scriptdir}/newsubs.txt`; do
+	#for sub in `cat ${scriptdir}/newsubs.txt`; do
+	for sub in 1004; do	 
 	  for run in `seq $nruns`; do
 
 			# some exceptions, hopefully temporary
