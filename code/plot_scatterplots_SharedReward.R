@@ -143,16 +143,26 @@ summary(model16)
 crPlots(model16, smooth=FALSE)
 
 
+total$SU_qualifier <- cut(sharedreward$SU,
+                   breaks = c(-2, 0, 6),
+                   labels = c("low","high"))
+total$SU_qualifier
 
-total$quant <- cut(sharedreward$RS_square,
-                          breaks = 2,
-                          labels = c("1","2"))
-total$quant
+#VS-STS Rew-Pun for Friend v Str + Comp, moderated by SUxRS^2 interaction
+scatter <- ggplot(data = total, aes(x=RS,
+                                           y=`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-23`, 
+                                           col = SU_qualifier))+
+  geom_smooth(method=lm, formula = y ~ poly(x,2), level = 0.99, 
+              se=FALSE, fullrange=TRUE, linetype="dashed")+
+  geom_point(shape=1,color="black")+
+  scale_x_continuous(breaks = seq(-6, 6, by = 2))
+scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
+                                     panel.grid.minor = element_blank(), 
+                                     panel.background = element_blank(), 
+                                     axis.line =  element_line(colour="black"))
+
 
 ggplot(data = sharedreward, aes(x=SU,y=`ppi_C13_rew-pun_F-C_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-13`))+
-  geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
-
-ggplot(data = sharedreward, aes(x=SU,y=`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-23`))+
   geom_smooth(aes(group = quant, color = quant), method = "lm", se = F)+geom_point()
 
 ggplot(data = total, aes(x=SU,y=`pTPJ_R-P_F-S`))+
