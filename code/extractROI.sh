@@ -10,7 +10,7 @@ mkdir -p $outputdir
 
 
 	# ROI name and other path information
-for ROI in act_C16_rew_F-C_z1_main_cluster1; do
+for ROI in ppi_C16_rew_F-C_z1_main-effect_cluster1; do
 
 #seed-VS_thr5; do #activation
 
@@ -20,7 +20,7 @@ for ROI in act_C16_rew_F-C_z1_main_cluster1; do
 	for TASK in sharedreward; do
 		MASK=${maindir}/masks/${ROI}.nii
 		#MASK=${maindir}/masks/seed-${ROI}.nii.gz
-		TYPE=act #ppi_seed-VS_thr5
+		TYPE=ppi_seed-VS_thr5 #act
 		for COPENUM in 15; do # act
 			cnum_padded=`zeropad ${COPENUM} 2`
 			DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${cnum_padded}_*.gfeat/cope1.feat/filtered_func_data.nii.gz`
