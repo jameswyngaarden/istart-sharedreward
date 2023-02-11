@@ -10,7 +10,7 @@ mkdir -p $outputdir
 
 
 	# ROI name and other path information
-for ROI in resampled_pTPJ-thr50-2mm resampled_aTPJ-thr50-2mm; do
+for ROI in seed-VS_thr5; do
 
 #seed-VS_thr5; do #activation
 
@@ -20,8 +20,8 @@ for ROI in resampled_pTPJ-thr50-2mm resampled_aTPJ-thr50-2mm; do
 	for TASK in sharedreward; do
 		MASK=${maindir}/masks/${ROI}.nii
 		#MASK=${maindir}/masks/seed-${ROI}.nii.gz
-		TYPE=ppi_seed-VS_thr5
-		for COPENUM in 1 2 3 4 5 6; do # act
+		TYPE=act #ppi_seed-VS_thr5
+		for COPENUM in 11 13 14 16 21 23; do # act
 			cnum_padded=`zeropad ${COPENUM} 2`
 			DATA=`ls -1 ${MAINOUTPUT}/L3_task-${TASK}_type-${TYPE}_cnum-${cnum_padded}_*.gfeat/cope1.feat/filtered_func_data.nii.gz`
 			fslmeants -i $DATA -o ${outputdir}/${ROI}_type-${TYPE}_cope-${cnum_padded}.txt -m ${MASK}
