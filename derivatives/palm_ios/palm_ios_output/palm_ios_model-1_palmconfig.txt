@@ -1,8 +1,8 @@
 # Configuration file for PALM.
 # Version alpha119, running in MATLAB 9.12.0.2039608 (R2022a) Update 5.
-# 07-Feb-2023 16:32:45
+# 08-Feb-2023 17:18:32
 
--i df_palm.csv
+-i df_palm_ppi.csv
 -d ios_model.mat
 -t ios_model.con
 -o palm_ios_output/palm_ios_model-1
