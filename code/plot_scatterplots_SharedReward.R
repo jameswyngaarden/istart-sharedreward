@@ -113,6 +113,12 @@ scatter + scale_color_grey() + theme(panel.grid.major = element_blank(),
                                      axis.line =  element_line(colour="black"))
 
 summary(model6)
+      
+      #checking if result exists in stranger v computer as well
+model6b <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-15_rew_S-C` ~
+               tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+model6b
+summary(model6b)
 
 # Reward with Friend v Computer, zstat 1 cluster 2 (main effect) Ventral Striatum ppi seed
 model7 <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster2_type-ppi_seed-VS_thr5_cope-16` ~
@@ -232,17 +238,26 @@ model19
 crPlots(model19, smooth=FALSE)
 summary(model19)
 
-model20 <- lm(`pTPJ_R-P_F-C` ~
+model20 <- lm(`pTPJ_R_F_S` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=total)
 model20
 crPlots(model20, smooth=FALSE)
 summary(model20)
 
-model21 <- lm(`pTPJ_R-P_F-S` ~
+model21 <- lm(`pTPJ_R_P_F_S` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=total)
 model21
-crPlots(model21, smooth=FALSE)
+scatter <- ggplot(data = total, aes(x=SU,
+                                    y=`pTPJ_R_P_F_S`))+
+  geom_smooth(method=lm, level = 0.99, 
+              se=FALSE, fullrange=TRUE, linetype="dashed",)+
+  geom_point(shape=1,color="black")
+scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
+                                     panel.grid.minor = element_blank(), 
+                                     panel.background = element_blank(), 
+                                     axis.line =  element_line(colour="black"))
 summary(model21)
+#reward vs punishment in social closeness condition is significant - t = 2.482, p = 0.0177
 
 
 #VS exploratory results
@@ -257,6 +272,7 @@ model23 <- lm(`act_VS-seed_11-rew-pun_F-S` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model23
 summary(model23)
+crPlots(model23, smooth=FALSE, grid=FALSE)
                 #difference in VS activity for rew vs pun in friends vs strangers went down as reward sensitivity went up - p = 0.04717, t = -2.053
 
 model24 <- lm(`act_VS-seed_13-rew-pun_F-C` ~
