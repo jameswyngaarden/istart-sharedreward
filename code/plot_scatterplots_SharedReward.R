@@ -22,9 +22,23 @@ datadir <- file.path("../derivatives/")
 #here()
 sharedreward <- read_excel("ppi_wholebrain_scatterplot.xls")
 behavioral <- read_excel("ISTART-ALL-Combined-042122.xlsx")
+postscan_ratings <- read.csv("df_psr.csv")
 df_TPJ <- read_excel("df_TPJ.xlsx")
 total <- inner_join(sharedreward, df_TPJ, by = "sub")
 #srpr <- read.csv("../../istart/Shared_Reward/Behavioral_Analysis/SharedRewardPeerRatingsLongform.csv")
+
+
+#Behavioral ratings and personality factors plot
+scatter <- ggplot(data = postscan_ratings, aes(x=RS,
+                                    y=`Win_F_C`))+
+  geom_smooth(method=lm, formula = y ~ poly(x,2), level = 0.99, 
+              se=FALSE, fullrange=TRUE, linetype="dashed")+
+  geom_point(shape=1,color="black")
+scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
+                                     panel.grid.minor = element_blank(), 
+                                     panel.background = element_blank(), 
+                                     axis.line =  element_line(colour="black"))
+
 
 
 # Shared Reward Model 2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,7 +91,27 @@ crPlots(model5, smooth=FALSE)
 model6 <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16` ~
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model6
-crPlots(model6, smooth=FALSE)
+
+scatter <- ggplot(data = total, aes(x=RS,
+                                    y=`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16`))+
+  geom_smooth(method=lm, level = 0.99, 
+              se=FALSE, fullrange=TRUE, linetype="dashed",)+
+  geom_point(shape=1,color="black")
+scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
+                                     panel.grid.minor = element_blank(), 
+                                     panel.background = element_blank(), 
+                                     axis.line =  element_line(colour="black"))
+
+scatter <- ggplot(data = total, aes(x=SU,
+                                    y=`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16`))+
+  geom_smooth(method=lm, level = 0.99, 
+              se=FALSE, fullrange=TRUE, linetype="dashed",)+
+  geom_point(shape=1,color="black")
+scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
+                                     panel.grid.minor = element_blank(), 
+                                     panel.background = element_blank(), 
+                                     axis.line =  element_line(colour="black"))
+
 summary(model6)
 
 # Reward with Friend v Computer, zstat 1 cluster 2 (main effect) Ventral Striatum ppi seed
@@ -92,11 +126,29 @@ model8 <- lm(`ppi_C21_rew_F-SC_z1_main-effect_type-ppi_seed-VS_thr5_cope-21` ~
 model8
 crPlots(model8, smooth=FALSE)
 
-# Reward with Friend v Stranger + Computer, zstat 12 cluster (SUxRS_square-neg) Ventral Striatum ppi seed
-model9 <- lm(`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-23` ~
+# IMPORANT -- Reward with Friend v Stranger + Computer, zstat 12 cluster (SUxRS_square-neg) Ventral Striatum ppi seed
+model9 <- lm(`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster3_type-ppi_seed-VS_thr5_cope-23` ~
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model9
-crPlots(model9, smooth=FALSE)
+total$SU_qualifier <- cut(sharedreward$SU,
+                          breaks = c(-2, 0, 6),
+                          labels = c("low","high"))
+total$SU_qualifier
+
+  #VS-STS Rew-Pun for Friend v Str + Comp, moderated by SUxRS^2 interaction
+scatter <- ggplot(data = total, aes(x=RS,
+                                    y=`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster3_type-ppi_seed-VS_thr5_cope-23`, 
+                                    col = SU_qualifier))+
+  geom_smooth(method=lm, formula = y ~ poly(x,2), level = 0.99, 
+              se=FALSE, fullrange=TRUE, linetype="dashed")+
+  geom_point(shape=1,color="black")+
+  scale_x_continuous(breaks = seq(-6, 6, by = 2))
+scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
+                                     panel.grid.minor = element_blank(), 
+                                     panel.background = element_blank(), 
+                                     axis.line =  element_line(colour="black"))
+
+summary(model9)
 
 # Reward with Friend v Computer, zstat 2 cluster 1 (substance use) activation model exploratory result
 model10 <- lm(`act_C16_rew_F-C_z2_sub_cluster1_type-act_cope-16` ~
@@ -135,31 +187,22 @@ model15 <- lm(`act_C13_rew-pun_F-C_z10_rs2-neg_type-act_cope-13` ~
 model15
 crPlots(model15, smooth=FALSE)
 
-# Reward with Friend v Stranger, zstat 2 (substance use) activation model exploratory result
+# IMPORTANT - Reward with Friend v Stranger, zstat 2 (substance use) activation model exploratory result
 model16 <- lm(`act_C14_rew_F-S_z2_sub_type-act_cope-14` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model16
 summary(model16)
-crPlots(model16, smooth=FALSE)
 
-
-total$SU_qualifier <- cut(sharedreward$SU,
-                   breaks = c(-2, 0, 6),
-                   labels = c("low","high"))
-total$SU_qualifier
-
-#VS-STS Rew-Pun for Friend v Str + Comp, moderated by SUxRS^2 interaction
-scatter <- ggplot(data = total, aes(x=RS,
-                                           y=`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-23`, 
-                                           col = SU_qualifier))+
-  geom_smooth(method=lm, formula = y ~ poly(x,2), level = 0.99, 
-              se=FALSE, fullrange=TRUE, linetype="dashed")+
-  geom_point(shape=1,color="black")+
-  scale_x_continuous(breaks = seq(-6, 6, by = 2))
+scatter <- ggplot(data = total, aes(x=SU,
+                                    y=`act_C14_rew_F-S_z2_sub_type-act_cope-14`))+
+  geom_smooth(method=lm, level = 0.99, 
+              se=FALSE, fullrange=TRUE, linetype="dashed",)+
+  geom_point(shape=1,color="black")
 scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
                                      panel.grid.minor = element_blank(), 
                                      panel.background = element_blank(), 
                                      axis.line =  element_line(colour="black"))
+
 
 
 ggplot(data = sharedreward, aes(x=SU,y=`ppi_C13_rew-pun_F-C_z12_su-rs2-neg_cluster1_type-ppi_seed-VS_thr5_cope-13`))+
@@ -200,3 +243,46 @@ model21 <- lm(`pTPJ_R-P_F-S` ~
 model21
 crPlots(model21, smooth=FALSE)
 summary(model21)
+
+
+#VS exploratory results
+
+#VS wholebrain finding F-S
+model22 <- lm(`act_c14_VS-wholebrain_rew-F-S_zstat1_cluster1` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+model22
+summary(model22)
+
+model23 <- lm(`act_VS-seed_11-rew-pun_F-S` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+model23
+summary(model23)
+                #difference in VS activity for rew vs pun in friends vs strangers went down as reward sensitivity went up - p = 0.04717, t = -2.053
+
+model24 <- lm(`act_VS-seed_13-rew-pun_F-C` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+model24
+summary(model24)
+                #difference in VS activity for rew vs pun in friends vs computers went down as substance use went up - p = 0.0271, t = -2.301
+
+model25 <- lm(`act_VS-seed_14-rew_F-S` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+model25
+summary(model25)
+
+
+model26 <- lm(`act_VS-seed_16-rew_F-C` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+model26
+summary(model26)
+
+model27 <- lm(`act_VS-seed_21-rew_F-SC` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+model27
+summary(model27)
+
+model28 <- lm(`act_VS-seed_23-rew-pun_F-SC` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+model28
+summary(model28)
+                 #difference in VS activity for rew vs pun in friends vs strangers & computers went down as substance use went up - p = 0.04945, t = -2.031
