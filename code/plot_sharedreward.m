@@ -89,13 +89,13 @@ clc
 %             [h,p,ci,stats] = ttest(R_C)
 %             
 %             % Different from each other (R_F and R_S only)?
-%             disp([roi ' Reward with Friend > Reward with Stranger?'])
-%             [h,p,ci,stats] = ttest(R_F, R_S)
+            disp([roi ' Reward with Friend > Reward with Stranger?'])
+            [h,p,ci,stats] = ttest(R_F, R_S)
 %             
 %              % Different from each other (R_F and R_C only)?
 %             disp([roi ' Reward with Friend > Reward with Computer?'])
 %             [h,p,ci,stats] = ttest(R_F, R_C)
-            
+%             
 
             % Multiple regression
             %tb1 = [R_F,R_S,R_C,P_F,P_S,P_C];
