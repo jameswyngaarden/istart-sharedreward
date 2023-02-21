@@ -78,7 +78,7 @@ clc
             disp([roi ' R_F, R_S, and R_C difference?'])
             matrix = [Reward; Punishment]
             [~,~,stats]=anova2(matrix, sample)
-            %[p,tb1,stats]=anova1([R_F,R_S,R_C])
+            [p,tb1,stats]=anova1([R_F,R_S,R_C])
 
             % different from zero?
 %             disp([roi ' Reward with Friend different from zero?'])
@@ -89,8 +89,8 @@ clc
 %             [h,p,ci,stats] = ttest(R_C)
 %             
 %             % Different from each other (R_F and R_S only)?
-            disp([roi ' Reward with Friend > Reward with Stranger?'])
-            [h,p,ci,stats] = ttest(R_F, R_S)
+%             disp([roi ' Reward with Friend > Reward with Stranger?'])
+%             [h,p,ci,stats] = ttest(R_F, R_S)
 %             
 %              % Different from each other (R_F and R_C only)?
 %             disp([roi ' Reward with Friend > Reward with Computer?'])

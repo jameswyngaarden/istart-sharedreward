@@ -17,12 +17,12 @@ istartdatadir=/data/projects/istart-data #need to fix this upon release (no hard
 # study-specific inputs
 TASK=sharedreward
 sm=6
-sub=$1
-run=$2
-ppi=$3 # 0 for activation, otherwise seed region or network
-logfile=$4
-model=2
-echo sub: ${sub} run: ${run} ppi: ${ppi} logfile: ${logfile}
+model=$2
+sub=$3
+run=$4
+ppi=$5 # 0 for activation, otherwise seed region or network
+logfile=$6
+echo model: ${model} sub: ${sub} run: ${run} ppi: ${ppi} logfile: ${logfile}
 
 # set inputs and general outputs (should not need to chage across studies in Smith Lab)
 MAINOUTPUT=${maindir}/derivatives/fsl/sub-${sub}

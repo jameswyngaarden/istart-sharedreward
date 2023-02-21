@@ -11,11 +11,10 @@ logs=$maindir/logs
 logfile=${logs}/rerunL1_date-`date +"%FT%H%M"`.log
 
 
-for ppi in "VS_thr5"; do # # putting 0 first will indicate "activation"
-
-	#for sub in `cat ${scriptdir}/newsubs.txt`; do
-	for sub in 1004; do	 
-	  for run in `seq $nruns`; do
+for ppi in 0 "VS_thr5"; do # # putting 0 first will indicate "activation"
+	for model in 2 3; do
+		for sub in `cat ${scriptdir}/newsubs.txt`; do
+	  		for run in `seq $nruns`; do
 
 			# some exceptions, hopefully temporary
 			#if [ $sub -eq 3223 ]; then # bad data ||[ $sub -eq 3164 ] ||[ $sub -eq 1300 ] ||[ $sub -eq 1253 ]
@@ -28,13 +27,14 @@ for ppi in "VS_thr5"; do # # putting 0 first will indicate "activation"
 			#fi
 
 	  	# Manages the number of jobs and cores
-	  	SCRIPTNAME=${maindir}/code/L1stats.sh
-	  	NCORES=15
-	  	while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
-	    		sleep 5s
+	  		SCRIPTNAME=${maindir}/code/L1stats.sh
+	  		NCORES=15
+	  		while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
+	    			sleep 5s
+	  		done
+	  		bash $SCRIPTNAME $model $sub $run $ppi $logfile &
+				sleep 1s
 	  	done
-	  	bash $SCRIPTNAME $sub $run $ppi $logfile &
-			sleep 1s
 	  done
 	done
 done
