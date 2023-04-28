@@ -24,11 +24,15 @@ sharedreward <- read_excel("ppi_wholebrain_scatterplot.xls")
 behavioral <- read_excel("ISTART-ALL-Combined-042122.xlsx")
 postscan_ratings <- read.csv("df_psr.csv")
 df_TPJ <- read_excel("df_TPJ.xlsx")
+df_VS_ROI <- read_excel("VS_ROI_activation.xlsx")
+df_VS_TPJ_ROI <- read_excel("VS-TPJ_ROI_connectivity.xlsx")
 total <- inner_join(sharedreward, df_TPJ, by = "sub")
 #srpr <- read.csv("../../istart/Shared_Reward/Behavioral_Analysis/SharedRewardPeerRatingsLongform.csv")
 
 
 #Behavioral ratings and personality factors plot
+Win_F_C <- lm(`Win_F_C` ~ RS + RS_square + SU + SUxRS + SUxRS_sq, data=postscan_ratings)
+summary(Win_F_C)
 scatter <- ggplot(data = postscan_ratings, aes(x=RS,
                                     y=`Win_F_C`))+
   geom_smooth(method=lm, formula = y ~ poly(x,2), level = 0.99, 
@@ -78,6 +82,7 @@ crPlots(model3, smooth=FALSE)
 model4 <- lm(`ppi_C13_rew-pun_F-C_z1_main-effect_type-ppi_seed-VS_thr5_cope-13` ~
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model4
+summary(model4)
 crPlots(model4, smooth=FALSE)
 
 # Reward v Punishment with Friend v Computer, zstat 12 cluster 1 (SUxRS_square-neg) Ventral Striatum ppi seed
@@ -102,15 +107,15 @@ scatter + scale_color_grey() + theme(panel.grid.major = element_blank(),
                                      panel.background = element_blank(), 
                                      axis.line =  element_line(colour="black"))
 
-scatter <- ggplot(data = total, aes(x=SU,
-                                    y=`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16`))+
-  geom_smooth(method=lm, level = 0.99, 
-              se=FALSE, fullrange=TRUE, linetype="dashed",)+
-  geom_point(shape=1,color="black")
-scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
-                                     panel.grid.minor = element_blank(), 
-                                     panel.background = element_blank(), 
-                                     axis.line =  element_line(colour="black"))
+#scatter <- ggplot(data = total, aes(x=SU,
+#                                    y=`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16`))+
+#  geom_smooth(method=lm, level = 0.99, 
+#              se=FALSE, fullrange=TRUE, linetype="dashed",)+
+#  geom_point(shape=1,color="black")
+#scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
+#                                     panel.grid.minor = element_blank(), 
+#                                     panel.background = element_blank(), 
+#                                     axis.line =  element_line(colour="black"))
 
 summary(model6)
       
@@ -274,11 +279,22 @@ model23
 summary(model23)
 crPlots(model23, smooth=FALSE, grid=FALSE)
                 #difference in VS activity for rew vs pun in friends vs strangers went down as reward sensitivity went up - p = 0.04717, t = -2.053
+scatter <- ggplot(data = total, aes(x=RS,
+                                    y=`act_VS-seed_11-rew-pun_F-S`))+
+  geom_smooth(method=lm, level = 0.99, 
+              se=FALSE, fullrange=TRUE, linetype="dashed",)+
+  geom_point(shape=1,color="black")
+scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
+                                     panel.grid.minor = element_blank(), 
+                                     panel.background = element_blank(), 
+                                     axis.line =  element_line(colour="black"))
+
 
 model24 <- lm(`act_VS-seed_13-rew-pun_F-C` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model24
 summary(model24)
+crPlots(model24, smooth=FALSE, grid=FALSE)
                 #difference in VS activity for rew vs pun in friends vs computers went down as substance use went up - p = 0.0271, t = -2.301
 
 model25 <- lm(`act_VS-seed_14-rew_F-S` ~
@@ -302,3 +318,14 @@ model28 <- lm(`act_VS-seed_23-rew-pun_F-SC` ~
 model28
 summary(model28)
                  #difference in VS activity for rew vs pun in friends vs strangers & computers went down as substance use went up - p = 0.04945, t = -2.031
+
+
+#ANOVA for VS_ROI - repeated measures
+#model29 <- aov(Betas2 ~ Partner2, data = df_VS_ROI)
+model29 <- aov(Betas ~ Partner + Outcome, data = df_VS_ROI)
+summary(model29)
+
+#ANOVA for VS_TPJ_ROI - repeated measures
+#model30 <- aov(Betas2 ~ Partner2, data = df_VS_TPJ_ROI)
+model30 <- aov(Betas ~ Partner + Outcome...3, data = df_VS_TPJ_ROI)
+summary(model29)
