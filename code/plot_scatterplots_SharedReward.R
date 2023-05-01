@@ -12,7 +12,11 @@ library("umx")
 library("interactions")
 library("car")
 library("dplyr")
+
 library (tidyverse)
+library(rstatix)
+library(reshape)
+library(datarium)
 
 setwd("C:/Users/tup54227/Documents/GitHub/istart-sharedreward/derivatives/")
 maindir <- getwd()
@@ -322,10 +326,30 @@ summary(model28)
 
 #ANOVA for VS_ROI - repeated measures
 #model29 <- aov(Betas2 ~ Partner2, data = df_VS_ROI)
-model29 <- aov(Betas ~ Partner + Outcome, data = df_VS_ROI)
-summary(model29)
+#summary(model29)
+
+res.aov <- anova_test(
+  data = df_VS_ROI, dv = Betas, wid = sub,
+  within = c(Partner, Outcome)
+)
+get_anova_table(res.aov)
+
+pair<-df_VS_ROI %>% 
+  pairwise_t_test(Betas~Partner2,paired=TRUE, p.adjust.method = "bonferroni" ) 
+data.frame(pair)
 
 #ANOVA for VS_TPJ_ROI - repeated measures
-#model30 <- aov(Betas2 ~ Partner2, data = df_VS_TPJ_ROI)
-model30 <- aov(Betas ~ Partner + Outcome...3, data = df_VS_TPJ_ROI)
-summary(model29)
+#model30 <- aov(Betas ~ Partner + Outcome, data = df_VS_TPJ_ROI)
+res.aov <- anova_test(
+  data = df_VS_TPJ_ROI, dv = Betas, wid = sub,
+  within = c(Partner, Outcome)
+)
+get_anova_table(res.aov)
+
+pwc <- df_VS_TPJ_ROI %>%
+  group_by(Outcome) %>%
+  pairwise_t_test(
+    Betas ~ Partner, paired = TRUE,
+    p.adjust.method = "bonferroni"
+  )
+data.frame(pwc)
