@@ -231,19 +231,10 @@ tb1 =
 
   4×6 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
 
-  Columns 1 through 4
-
-    {'Source' }    {'SS'    }    {'df' }    {'MS'      }
-    {'Columns'}    {[0.5342]}    {[  2]}    {[  0.2671]}
-    {'Error'  }    {[4.6227]}    {[132]}    {[  0.0350]}
-    {'Total'  }    {[5.1569]}    {[134]}    {0×0 double}
-
-  Columns 5 through 6
-
-    {'F'       }    {'Prob>F'    }
-    {[  7.6267]}    {[7.3379e-04]}
-    {0×0 double}    {0×0 double  }
-    {0×0 double}    {0×0 double  }
+    {'Source' }    {'SS'    }    {'df' }    {'MS'      }    {'F'       }    {'Prob>F'    }
+    {'Columns'}    {[0.5342]}    {[  2]}    {[  0.2671]}    {[  7.6267]}    {[7.3379e-04]}
+    {'Error'  }    {[4.6227]}    {[132]}    {[  0.0350]}    {0×0 double}    {0×0 double  }
+    {'Total'  }    {[5.1569]}    {[134]}    {0×0 double}    {0×0 double}    {0×0 double  }
 
 
 stats = 
