@@ -36,6 +36,8 @@ total <- inner_join(sharedreward, df_TPJ, by = "sub")
 
 #Behavioral ratings and personality factors plot
 Win_F_C <- lm(`Win_F_C` ~ RS + RS_square + SU + SUxRS + SUxRS_sq, data=postscan_ratings)
+Behavior_RS_r <- cor(postscan_ratings$RS, postscan_ratings$`Win_F_C`, method = 'pearson')
+print(Behavior_RS_r)
 summary(Win_F_C)
 scatter <- ggplot(data = postscan_ratings, aes(x=RS,
                                     y=`Win_F_C`))+
@@ -64,10 +66,6 @@ crModel <- crPlots(VS_substance_F_C,
                    col.lines='yellow', #trend line color
                    lwd=1,
                    grid=FALSE)
-
-VS_substance_F_S <- lm(`VS_seed_F_S` ~ tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
-summary(VS_substance_F_S)
-crPlots(VS_substance_F_S, smooth=FALSE)
 
 # IMPORTANT -- VS-FFA Connectivity: Reward with Friend v Computer, zstat 1 cluster 1 (main effect) Ventral Striatum ppi seed
 model6 <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16` ~
@@ -216,6 +214,8 @@ summary(model22)
 model23 <- lm(`act_VS-seed_11-rew-pun_F-S` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 model23
+VS_RS_r <- cor(sharedreward$RS, sharedreward$`act_VS-seed_11-rew-pun_F-S`, method = 'pearson')
+print(VS_RS_r)
 summary(model23)
 crPlots(model23, smooth=FALSE, grid=FALSE)
                 #difference in VS activity for rew vs pun in friends vs strangers went down as reward sensitivity went up - p = 0.04717, t = -2.053
@@ -252,6 +252,14 @@ get_anova_table(res.aov)
 pair<-df_VS_ROI %>% 
   pairwise_t_test(Betas~Partner2,paired=TRUE, p.adjust.method = "bonferroni" ) 
 data.frame(pair)
+
+pwc <- df_VS_ROI %>%
+  group_by(Outcome) %>%
+  pairwise_t_test(
+    Betas ~ Partner, paired = TRUE,
+    p.adjust.method = "fdr"
+  )
+data.frame(pwc)
 
 #ANOVA for VS_TPJ_ROI - repeated measures
 #model30 <- aov(Betas ~ Partner + Outcome, data = df_VS_TPJ_ROI)
