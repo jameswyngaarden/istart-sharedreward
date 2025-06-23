@@ -18,7 +18,7 @@ library(rstatix)
 library(reshape)
 library(datarium)
 
-setwd("C:/Users/tup54227/Documents/GitHub/istart-sharedreward/derivatives/")
+setwd("~/Documents/GitHub/istart-sharedreward/derivatives/")
 maindir <- getwd()
 datadir <- file.path("../derivatives/")
 
@@ -257,9 +257,9 @@ pwc <- df_VS_ROI %>%
   group_by(Outcome) %>%
   pairwise_t_test(
     Betas ~ Partner, paired = TRUE,
-    p.adjust.method = "fdr"
-  )
-data.frame(pwc)
+    p.adjust.method = "fdr" # flagging this correction, fdr probably not best
+  )                         # if it's purely within/between subs, ANOVA should be fine;
+data.frame(pwc)             # Any case where it's a mix, need lmer approach; or reduce vars to one obs per approach
 
 #ANOVA for VS_TPJ_ROI - repeated measures
 #model30 <- aov(Betas ~ Partner + Outcome, data = df_VS_TPJ_ROI)
