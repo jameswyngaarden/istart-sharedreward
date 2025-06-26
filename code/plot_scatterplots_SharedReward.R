@@ -381,3 +381,20 @@ posthoc_vstpj$contrasts
 ###
 
 data.frame(pwc)
+
+###
+
+# Testing Friend vs. Computer
+
+# Check: can we replicate the act VS result for Friend vs. Stranger:
+
+# Original: Reward Sensitivity finding
+model23 <- lm(`act_VS-seed_11-rew-pun_F-S` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+summary(model23)
+
+# Replication:
+
+
+
+
