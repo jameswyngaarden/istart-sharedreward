@@ -150,6 +150,28 @@ scatter + scale_color_grey() + theme(panel.grid.major = element_blank(),
                                      panel.background = element_blank(), 
                                      axis.line =  element_line(colour="black"))
 
+
+# IMPORANT -- Reward with Friend v Stranger + Computer, zstat 12 cluster (SUxRS_square-neg) Ventral Striatum ppi seed
+model9 <- lm(`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster3_type-ppi_seed-VS_thr5_cope-23` ~
+               tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+summary(model9)
+total$SU_qualifier <- cut(sharedreward$SU,
+                          breaks = c(-2, 0, 6),
+                          labels = c("low","high"))
+total$SU_qualifier
+#VS-STG Rew-Pun for Friend v Str + Comp, moderated by SUxRS^2 interaction
+scatter <- ggplot(data = total, aes(x=RS,
+                                    y=`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster3_type-ppi_seed-VS_thr5_cope-23`, 
+                                    col = SU_qualifier))+
+  geom_smooth(method=lm, formula = y ~ poly(x,2), level = 0.99, 
+              se=FALSE, fullrange=TRUE, linetype="dashed")+
+  geom_point(shape=1,color="black")+
+  scale_x_continuous(breaks = seq(-6, 6, by = 2))
+scatter + scale_color_grey() + theme(panel.grid.major = element_blank(), 
+                                     panel.grid.minor = element_blank(), 
+                                     panel.background = element_blank(), 
+                                     axis.line =  element_line(colour="black"))
+
 # Pre-Frontal Motor activation: Reward with Friend v Stranger, zstat 9 cluster 2 (reward sensitivity) activation model exploratory result
 model14 <- lm(`act_C13_rew-pun_F-C_z9_rs-neg_cluster2_type-act_cope-13` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
@@ -229,7 +251,8 @@ scatter + scale_color_grey() + theme(panel.grid.major = element_blank(),
                                      panel.background = element_blank(), 
                                      axis.line =  element_line(colour="black"))
   #Substance Use finding
-model24
+model24 <- lm(`act_VS-seed_13-rew-pun_F-C` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 summary(model24)
 crPlots(model24, smooth=FALSE, grid=FALSE)
                 #difference in VS activity for rew vs pun in friends vs computers went down as substance use went up - p = 0.0271, t = -2.301
@@ -261,6 +284,60 @@ pwc <- df_VS_ROI %>%
   )                         # if it's purely within/between subs, ANOVA should be fine;
 data.frame(pwc)             # Any case where it's a mix, need lmer approach; or reduce vars to one obs per approach
 
+###
+# JW: replacing ANOVA above with lm:
+# Load required libraries
+library(lme4)      # for lmer()
+library(lmerTest)  # for p-values in lmer
+library(emmeans)   # for post-hoc comparisons
+#install.packages("effectsize")
+library(effectsize) # for effect size calculations
+
+# Convert repeated measures ANOVA to Linear Mixed Model
+# Assuming your data is in long format with columns: sub, Partner, Outcome, Betas
+
+# Fit the linear mixed model
+# Random intercepts for subjects to account for repeated measures
+model <- lmer(Betas ~ Partner * Outcome + (1|sub), data = df_VS_ROI)
+
+# Get model summary
+summary(model)
+
+# Get ANOVA-style F-tests (Type III)
+library(car)
+Anova(model, type = "III")
+
+# Calculate effect sizes
+# For mixed models, we can use marginal R² (fixed effects) and conditional R² (fixed + random)
+library(MuMIn)
+r.squaredGLMM(model)
+
+# Alternative: Calculate eta-squared from the Anova output
+anova_results <- Anova(model, type = "III")
+# This will give you similar results to your repeated measures ANOVA
+
+# Post-hoc comparisons (equivalent to your pairwise t-tests)
+# Compare partners within reward outcomes
+posthoc <- emmeans(model, pairwise ~ Partner | Outcome, adjust = "bonferroni")
+posthoc$contrasts
+
+# Or if you want to compare specific conditions (e.g., Friend vs Stranger for rewards only)
+# First create the interaction term
+emmeans_results <- emmeans(model, ~ Partner * Outcome)
+contrast(emmeans_results, 
+         list("Friend_Reward vs Stranger_Reward" = c(0, 0, 0, 1, 0, -1)),
+         adjust = "bonferroni")
+
+# Alternative simpler approach if you just want Friend vs Stranger for rewards:
+# Filter data for reward outcomes only, then fit simpler model
+df_rewards_only <- df_VS_ROI[df_VS_ROI$Outcome == "Reward", ]
+model_rewards <- lmer(Betas ~ Partner + (1|sub), data = df_rewards_only)
+summary(model_rewards)
+
+# Post-hoc for rewards only
+emmeans(model_rewards, pairwise ~ Partner, adjust = "bonferroni")
+###
+
 #ANOVA for VS_TPJ_ROI - repeated measures
 #model30 <- aov(Betas ~ Partner + Outcome, data = df_VS_TPJ_ROI)
 res.aov <- anova_test(
@@ -275,4 +352,32 @@ pwc <- df_VS_TPJ_ROI %>%
     Betas ~ Partner, paired = TRUE,
     p.adjust.method = "bonferroni"
   )
+
+###
+
+# Load required libraries
+library(lme4)
+library(lmerTest)
+library(car)
+library(emmeans)
+library(MuMIn)
+
+# Convert repeated measures ANOVA to Linear Mixed Model for VS-TPJ connectivity
+model_vstpj <- lmer(Betas ~ Partner * Outcome + (1|sub), data = df_VS_TPJ_ROI)
+
+# Get model summary
+summary(model_vstpj)
+
+# Get ANOVA-style F-tests (Type III)
+Anova(model_vstpj, type = "III")
+
+# Calculate effect sizes
+r.squaredGLMM(model_vstpj)
+
+# Post-hoc comparisons grouped by outcome
+posthoc_vstpj <- emmeans(model_vstpj, pairwise ~ Partner | Outcome, adjust = "bonferroni")
+posthoc_vstpj$contrasts
+
+###
+
 data.frame(pwc)
