@@ -12,11 +12,16 @@ library("umx")
 library("interactions")
 library("car")
 library("dplyr")
+library("lme4")
+library("lmerTest")
+library("car")
+library("emmeans")
+library("MuMIn")
 
-library (tidyverse)
-library(rstatix)
-library(reshape)
-library(datarium)
+library ("tidyverse")
+library("rstatix")
+library("reshape")
+library("datarium")
 
 setwd("~/Documents/GitHub/istart-sharedreward/derivatives/")
 maindir <- getwd()
@@ -100,11 +105,102 @@ model6b <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cop
 model6b
 summary(model6b)
 
-# VS-left occipital/FFA: Reward with Friend v Computer, zstat 1 cluster 2 (main effect) Ventral Striatum ppi seed
-model7 <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster2_type-ppi_seed-VS_thr5_cope-16` ~
+# VS-left occipital (cluset 2)/FFA (cluster 1): Reward with Friend v Computer, zstat 1 cluster 2 (main effect) Ventral Striatum ppi seed
+model7 <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16` ~
                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 summary(model7)
 crPlots(model7, smooth=FALSE)
+
+# Calculate f squared for occipital
+# Full model (your existing occipital model)
+occipital_full <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster2_type-ppi_seed-VS_thr5_cope-16` ~ 
+                       tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, 
+                     data = sharedreward)
+
+# Reduced model without reward sensitivity (RS)
+occipital_reduced <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster2_type-ppi_seed-VS_thr5_cope-16` ~ 
+                          tsnr + fd_mean + RS_square + SU + SUxRS + SUxRS_sq, 
+                        data = sharedreward)
+
+# Get R-squared values
+R2_full <- summary(occipital_full)$r.squared
+R2_reduced <- summary(occipital_reduced)$r.squared
+
+# Calculate Cohen's f² for the RS effect
+f_squared_RS_occipital <- (R2_full - R2_reduced) / (1 - R2_full)
+
+cat("R-squared full model:", round(R2_full, 4), "\n")
+cat("R-squared reduced model:", round(R2_reduced, 4), "\n")
+cat("Cohen's f² for Reward Sensitivity (occipital):", round(f_squared_RS_occipital, 4), "\n")
+
+# Interpretation
+if(f_squared_RS_occipital < 0.02) {
+  effect_size_interp <- "small"
+} else if(f_squared_RS_occipital < 0.15) {
+  effect_size_interp <- "medium"
+} else {
+  effect_size_interp <- "large"
+}
+cat("Effect size interpretation:", effect_size_interp, "\n")
+
+# Calculate f squared for rFFA findings:
+# Full model (your existing rFFA model)
+rffa_full <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16` ~
+                  tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, 
+                data = sharedreward)
+
+# === Cohen's f² for Reward Sensitivity (RS) effect ===
+# Reduced model without RS
+rffa_reduced_RS <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16` ~
+                        tsnr + fd_mean + RS_square + SU + SUxRS + SUxRS_sq, 
+                      data = sharedreward)
+
+R2_full <- summary(rffa_full)$r.squared
+R2_reduced_RS <- summary(rffa_reduced_RS)$r.squared
+
+# Calculate Cohen's f² for RS effect
+f_squared_RS_rffa <- (R2_full - R2_reduced_RS) / (1 - R2_full)
+
+cat("=== REWARD SENSITIVITY EFFECT ON rFFA ===\n")
+cat("R-squared full model:", round(R2_full, 4), "\n")
+cat("R-squared reduced model (no RS):", round(R2_reduced_RS, 4), "\n")
+cat("Cohen's f² for Reward Sensitivity:", round(f_squared_RS_rffa, 4), "\n")
+
+# Interpretation for RS
+if(f_squared_RS_rffa < 0.02) {
+  effect_size_interp_RS <- "small"
+} else if(f_squared_RS_rffa < 0.15) {
+  effect_size_interp_RS <- "medium"
+} else {
+  effect_size_interp_RS <- "large"
+}
+cat("Effect size interpretation (RS):", effect_size_interp_RS, "\n\n")
+
+# === Cohen's f² for Substance Use (SU) main effect ===
+# Reduced model without SU main effect (keeping interactions)
+rffa_reduced_SU <- lm(`ppi_C16_rew_F-C_z1_main-effect_cluster1_type-ppi_seed-VS_thr5_cope-16` ~
+                        tsnr + fd_mean + RS + RS_square + SUxRS + SUxRS_sq, 
+                      data = sharedreward)
+
+R2_reduced_SU <- summary(rffa_reduced_SU)$r.squared
+
+# Calculate Cohen's f² for SU main effect
+f_squared_SU_rffa <- (R2_full - R2_reduced_SU) / (1 - R2_full)
+
+cat("=== SUBSTANCE USE EFFECT ON rFFA ===\n")
+cat("R-squared full model:", round(R2_full, 4), "\n")
+cat("R-squared reduced model (no SU main effect):", round(R2_reduced_SU, 4), "\n")
+cat("Cohen's f² for Substance Use:", round(f_squared_SU_rffa, 4), "\n")
+
+# Interpretation for SU
+if(f_squared_SU_rffa < 0.02) {
+  effect_size_interp_SU <- "small"
+} else if(f_squared_SU_rffa < 0.15) {
+  effect_size_interp_SU <- "medium"
+} else {
+  effect_size_interp_SU <- "large"
+}
+cat("Effect size interpretation (SU):", effect_size_interp_SU, "\n")
 
 # IMPORANT -- Reward with Friend v Stranger + Computer, zstat 12 cluster (SUxRS_square-neg) Ventral Striatum ppi seed
 model9 <- lm(`ppi_C23_rew-pun_F-SC_z12_su-rs2-neg_cluster3_type-ppi_seed-VS_thr5_cope-23` ~
@@ -211,6 +307,49 @@ summary(model20)
 model21 <- lm(`pTPJ_R_P_F_S` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=total)
 summary(model21)
+
+# Calculate f squared for SU
+# Full model
+model21_full <- lm(`pTPJ_R_P_F_S` ~
+                     tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, 
+                   data = total)
+
+# Reduced model without substance use (SU) - removing both main effect and interactions
+model21_reduced <- lm(`pTPJ_R_P_F_S` ~
+                        tsnr + fd_mean + RS + RS_square, 
+                      data = total)
+
+# Get R-squared values
+R2_full <- summary(model21_full)$r.squared
+R2_reduced <- summary(model21_reduced)$r.squared
+
+# Calculate Cohen's f² for the SU effect (including its interactions)
+f_squared_SU <- (R2_full - R2_reduced) / (1 - R2_full)
+
+cat("R-squared full model:", round(R2_full, 4), "\n")
+cat("R-squared reduced model:", round(R2_reduced, 4), "\n")
+cat("Cohen's f² for Substance Use (including interactions):", round(f_squared_SU, 4), "\n")
+
+# If you want JUST the main effect of SU (without interactions), use this instead:
+model21_reduced_mainonly <- lm(`pTPJ_R_P_F_S` ~
+                                 tsnr + fd_mean + RS + RS_square + SUxRS + SUxRS_sq, 
+                               data = total)
+
+R2_reduced_mainonly <- summary(model21_reduced_mainonly)$r.squared
+f_squared_SU_mainonly <- (R2_full - R2_reduced_mainonly) / (1 - R2_full)
+
+cat("Cohen's f² for SU main effect only:", round(f_squared_SU_mainonly, 4), "\n")
+
+# Interpretation for main effect only
+if(f_squared_SU_mainonly < 0.02) {
+  effect_size_interp <- "small"
+} else if(f_squared_SU_mainonly < 0.15) {
+  effect_size_interp <- "medium"
+} else {
+  effect_size_interp <- "large"
+}
+cat("Effect size interpretation (main effect):", effect_size_interp, "\n")
+
 scatter <- ggplot(data = total, aes(x=SU,
                                     y=`pTPJ_R_P_F_S`))+
   geom_smooth(method=lm, level = 0.99, 
@@ -265,24 +404,27 @@ crPlots(model28, smooth=FALSE, grid=FALSE)
                 #difference in VS activity for rew vs pun in friends vs strangers & computers went down as substance use went up - p = 0.04945, t = -2.031
 
 
-#ANOVA for VS_ROI - repeated measures
+# ANOVA for VS_ROI - repeated measures
 res.aov <- anova_test(
   data = df_VS_ROI, dv = Betas, wid = sub,
-  within = c(Partner, Outcome)
+  within = c(Partner, Outcome),
+  effect.size = "pes"  # This specifies partial eta squared instead of generalized
 )
 get_anova_table(res.aov)
 
-pair<-df_VS_ROI %>% 
-  pairwise_t_test(Betas~Partner2,paired=TRUE, p.adjust.method = "bonferroni" ) 
+# Pairwise comparisons across all conditions
+pair <- df_VS_ROI %>% 
+  pairwise_t_test(Betas ~ Partner2, paired = TRUE, p.adjust.method = "bonferroni") 
 data.frame(pair)
 
+# Pairwise comparisons within each outcome type
 pwc <- df_VS_ROI %>%
   group_by(Outcome) %>%
   pairwise_t_test(
     Betas ~ Partner, paired = TRUE,
-    p.adjust.method = "fdr" # flagging this correction, fdr probably not best
-  )                         # if it's purely within/between subs, ANOVA should be fine;
-data.frame(pwc)             # Any case where it's a mix, need lmer approach; or reduce vars to one obs per approach
+    p.adjust.method = "bonferroni"  # Changed from "fdr" to "bonferroni" for consistency
+  )
+data.frame(pwc)
 
 ###
 # JW: replacing ANOVA above with lm:
@@ -330,19 +472,20 @@ contrast(emmeans_results,
 
 # Alternative simpler approach if you just want Friend vs Stranger for rewards:
 # Filter data for reward outcomes only, then fit simpler model
-df_rewards_only <- df_VS_ROI[df_VS_ROI$Outcome == "Reward", ]
-model_rewards <- lmer(Betas ~ Partner + (1|sub), data = df_rewards_only)
-summary(model_rewards)
+#df_rewards_only <- df_VS_ROI[df_VS_ROI$Outcome == "Reward", ]
+#model_rewards <- lmer(Betas ~ Partner + (1|sub), data = df_rewards_only)
+#summary(model_rewards)
 
 # Post-hoc for rewards only
-emmeans(model_rewards, pairwise ~ Partner, adjust = "bonferroni")
+#emmeans(model_rewards, pairwise ~ Partner, adjust = "bonferroni")
 ###
 
 #ANOVA for VS_TPJ_ROI - repeated measures
 #model30 <- aov(Betas ~ Partner + Outcome, data = df_VS_TPJ_ROI)
 res.aov <- anova_test(
   data = df_VS_TPJ_ROI, dv = Betas, wid = sub,
-  within = c(Partner, Outcome)
+  within = c(Partner, Outcome),
+  effect.size =
 )
 get_anova_table(res.aov)
 
@@ -400,6 +543,39 @@ modelrep <- lm(`rep_act_VS-seed_11-rew-pun_F-S` ~
                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 summary(modelrep)
 # Model correctly replicates
+
+# Calculate F-squared?
+
+# Full model (your existing model)
+model23_full <- lm(`act_VS-seed_11-rew-pun_F-S` ~
+                     tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, 
+                   data = sharedreward)
+
+# Reduced model without reward sensitivity (RS)
+model23_reduced <- lm(`act_VS-seed_11-rew-pun_F-S` ~
+                        tsnr + fd_mean + RS_square + SU + SUxRS + SUxRS_sq, 
+                      data = sharedreward)
+
+# Get R-squared values
+R2_full <- summary(model23_full)$r.squared
+R2_reduced <- summary(model23_reduced)$r.squared
+
+# Calculate Cohen's f² for the RS effect
+f_squared_RS <- (R2_full - R2_reduced) / (1 - R2_full)
+
+cat("R-squared full model:", round(R2_full, 4), "\n")
+cat("R-squared reduced model:", round(R2_reduced, 4), "\n")
+cat("Cohen's f² for Reward Sensitivity:", round(f_squared_RS, 4), "\n")
+
+# Interpretation
+if(f_squared_RS < 0.02) {
+  effect_size_interp <- "small"
+} else if(f_squared_RS < 0.15) {
+  effect_size_interp <- "medium"
+} else {
+  effect_size_interp <- "large"
+}
+cat("Effect size interpretation:", effect_size_interp, "\n")
 
 # Test Friend vs. Computer:
 sharedreward$`rep_act_VS-seed_13-rew-pun_F-C` <- read.table("~/Documents/GitHub/istart-sharedreward/derivatives/imaging_plots/test_act_seed-VS_cnum-13_cname-rew-pun_F-C.txt")[,1]
