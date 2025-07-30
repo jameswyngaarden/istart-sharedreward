@@ -394,7 +394,18 @@ model23 <- lm(`act_VS-seed_11-rew-pun_F-S` ~
 summary(model23)
 
 # Replication:
+sharedreward$`rep_act_VS-seed_11-rew-pun_F-S` <- read.table("~/Documents/GitHub/istart-sharedreward/derivatives/imaging_plots/test_act_seed-VS_cnum-11_cname-rew-pun_F-S.txt")[,1]
 
+modelrep <- lm(`rep_act_VS-seed_11-rew-pun_F-S` ~
+                tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+summary(modelrep)
+# Model correctly replicates
 
+# Test Friend vs. Computer:
+sharedreward$`rep_act_VS-seed_13-rew-pun_F-C` <- read.table("~/Documents/GitHub/istart-sharedreward/derivatives/imaging_plots/test_act_seed-VS_cnum-13_cname-rew-pun_F-C.txt")[,1]
+
+modelrep <- lm(`rep_act_VS-seed_13-rew-pun_F-C` ~
+                 tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
+summary(modelrep)
 
 
