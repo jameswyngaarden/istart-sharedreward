@@ -584,4 +584,4 @@ modelrep <- lm(`rep_act_VS-seed_13-rew-pun_F-C` ~
                  tsnr + fd_mean + RS + RS_square + SU + SUxRS + SUxRS_sq, data=sharedreward)
 summary(modelrep)
 
-
+### Manuscript 
